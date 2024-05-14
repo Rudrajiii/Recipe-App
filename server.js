@@ -8,8 +8,9 @@ const User = require("./model/user");
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const flash = require('connect-flash');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const localStrategy = require('passport-local');
+const SearchHistory = require('./model/Searchhistory');
 
 passport.use(new localStrategy(User.authenticate()));
 
@@ -33,11 +34,22 @@ passport.deserializeUser(User.deserializeUser());
 server.get('/' , function(req , res){
     res.render('auth');
 })
-server.get('/index', isLoggedIn , function (req, res) {
+server.get('/index', isLoggedIn ,async function (req, res) {
     req.flash('success' , 'successfully logged in!!');
     const successFlash = req.flash('success');
-    // console.log(successFlash);
-    res.render('index' , {successFlash , username: req.user.username });
+    console.log(successFlash);
+    const userData = await User.findOne(
+        { 
+            username: req.user.username
+        }
+    );
+    const userId = req.user._id; // Assuming user ID is available in the request
+    const searchHistory = await SearchHistory.find({ user: userId }).sort({ timestamp: -1 }).limit(10); // Limit to 10 most recent searches
+    // Pass search history to the view for rendering
+    // res.render('index', { searchHistory });
+    console.log(userData);
+    res.render('index' , {successFlash , userData , searchHistory});
+
 })
 
 server.get('/verify' , (req, res) => {
@@ -54,7 +66,7 @@ server.post('/register', async function(req, res) {
     await User.register(userData, req.body.password)
     .then((registeredUser)=>{
         passport.authenticate('local')(req , res , ()=>{
-            res.redirect('/verify');
+            res.redirect('/index');
         });
     })
 });
@@ -84,8 +96,14 @@ function isLoggedIn(req, res, next){
 server.get('/api' ,async function(req, res){
     try {
         const userPrompt = req.query.prompt;
+        const userId = req.user._id;
         const apiData = await main(userPrompt);
         res.json({ response: apiData }); //JSON
+        const searchHistory = new SearchHistory({
+            user: userId,
+            query: userPrompt
+        });
+        await searchHistory.save();
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");

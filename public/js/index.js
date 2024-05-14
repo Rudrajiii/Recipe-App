@@ -2,6 +2,7 @@ document.getElementById('btn').addEventListener('click', async () => {
     try {
 
         const userInput = document.getElementById('input').value;
+        console.log(userInput);
 
         // Fetch data from API with user input as prompt
 
