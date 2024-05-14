@@ -9,11 +9,15 @@
 </head>
 <body>
     <h1>Auth Page</h1>
-    <form id="reg-form" action="/register"  method="post">
+    <form id="reg-form" action="/register"  method="post" enctype="multipart/form-data">
         <label for="userName">Name:</label>
         <input name="username" type="text" autocomplete="off" id="username" placeholder="Username" />
+        <label for="email">Email:</label>
+        <input name="email" type="email" autocomplete="off" id="email" placeholder="Email" />
         <label for="password">password:</label>
         <input name="password"  type="password" autocomplete="off" id="password" placeholder="Password" />
+        <label for="profilePic">Profile Picture:</label>
+        <input name="profilePic" type="file" id="profilePic" accept="image/*">
         <input class="btn btn-danger" type="submit" value="Submit Form" />
     </form>
     <a href="/verify">Already in Recipie.in? Login</a>

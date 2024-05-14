@@ -21,6 +21,7 @@
     "express-session": "^1.18.0",
     "groq-sdk": "^0.3.3",
     "mongoose": "^8.3.4",
+    "multer": "^1.4.5-lts.1",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^8.0.0"
