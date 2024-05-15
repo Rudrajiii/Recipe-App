@@ -12,6 +12,9 @@ const cookieParser = require("cookie-parser");
 const localStrategy = require("passport-local");
 const SearchHistory = require("./model/Searchhistory");
 const multer = require("multer");
+const nodemailer = require("nodemailer");
+const {EMAIL , PASSWORD} = require("./env.js");
+const Mailgen = require("mailgen");
 
 passport.use(new localStrategy(User.authenticate()));
 
@@ -120,6 +123,9 @@ server.post(
       const passwordNotFoundError = req.flash("error", "Please provide a password");
       return res.redirect("/");
     }
+
+    const userEmail = req.body.email;
+    const userName = req.body.username;
     // Check if user already exists
     const existingUser = await User.findOne({ username: req.body.username });
     if (existingUser) {
@@ -128,13 +134,14 @@ server.post(
     }
     let userData = new User({
       username: req.body.username,
-      email: req.body.email,
+      email: userEmail,
       // profilePic: req.file.path,
       password: req.body.password,
     });
     await User.register(userData, req.body.password).then((registeredUser) => {
       passport.authenticate("local")(req, res, () => {
         res.redirect("/index");
+        sendRegistrationEmail(userEmail , userName);
       });
     });
   }
@@ -183,6 +190,65 @@ server.get("/api", async function (req, res) {
     res.status(500).send("Internal Server Error");
   }
 });
+
+//todo: demo Sending emails as a successfull registration in our app to real users
+
+function sendRegistrationEmail(userEmail , userName) {
+  let config = {
+    host: "smtp.ethereal.email",
+    port: 587,
+    secure: false,
+    service: 'gmail',
+    auth: {
+      user: EMAIL,
+      pass: PASSWORD
+    }
+  }
+
+  const transporter = nodemailer.createTransport(config);
+
+  let MailGenerator = new Mailgen({
+    theme: "default",
+    product: {
+      name: "Mailgen",
+      link: 'https://mailgen.js/'
+    }
+  });
+
+  let response = {
+    body: {
+      name: "From CoderVicky",
+      intro: `Hey ${userName} Welcome to the Recipie.in. Here you can find your favorite recipes in just one single prompt`,
+      table: {
+        data: [
+          {
+            reciver: "XYZ Anonymus",
+            description: "A Backend Developer",
+            status: "Registration Successful.",
+          }
+        ]
+      },
+      outro: "Looking forward to helping you."
+    }
+  }
+
+  let mail = MailGenerator.generate(response);
+
+  let message = {
+    from: EMAIL,
+    to: userEmail, // Use captured email address
+    subject: "Successful Registration",
+    html: mail
+  }
+
+  transporter.sendMail(message)
+    .then(() => {
+      console.log("Registration email sent successfully to", userEmail);
+    })
+    .catch(error => {
+      console.error("Error sending registration email:", error);
+    });
+}
 
 server.listen(8080, () => {
   console.log("listening on port 8080");

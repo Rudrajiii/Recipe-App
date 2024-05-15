@@ -6,7 +6,7 @@ function extractDate(timestampString) {
     
     return match ? match[1] : null;
 }
- // JavaScript for copying text to clipboard
+//* JavaScript for copying text to clipboard
  const copyButtons = document.querySelectorAll('.copy-button');
     
  copyButtons.forEach(button => {
@@ -14,8 +14,6 @@ function extractDate(timestampString) {
          const index = button.getAttribute('data-index');
          const historyItem = document.getElementById(`history${index}`);
          const textToCopy = historyItem.innerText;
-         
-         // Create a temporary textarea element to copy text to clipboard
          const textarea = document.createElement('textarea');
          textarea.value = textToCopy;
          textarea.setAttribute('readonly', '');
@@ -25,11 +23,9 @@ function extractDate(timestampString) {
          textarea.select();
          document.execCommand('copy');
          document.body.removeChild(textarea);
-         
-         // Change button text to "Copied!" without appending "Copy" again
          button.textContent = 'Copied!';
          setTimeout(() => {
              button.textContent = 'Copy';
-         }, 2000); // Reset button text after 2 seconds
+         }, 2000);
      });
  });
