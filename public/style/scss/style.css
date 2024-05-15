@@ -83,4 +83,8 @@ nav .logoutButton a {
   text-decoration: none;
   color: black;
   background: #ebe6e6;
+}
+
+#hist {
+  display: flex;
 }/*# sourceMappingURL=style.css.map */

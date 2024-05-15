@@ -15,6 +15,15 @@ const multer = require("multer");
 
 passport.use(new localStrategy(User.authenticate()));
 
+function extractDate(timestampString) {
+  timestampString = String(timestampString);
+  const regex = /\b(\w{3}\s\w{3}\s\d{1,2}\s\d{4})\b/;
+  
+  const match = timestampString.match(regex);
+  
+  return match ? match[1] : null;
+}
+
 const server = express();
 server.set("view engine", "ejs");
 server.set("views", path.join(__dirname, "views"));
@@ -46,7 +55,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 server.get("/", function (req, res) {
-  res.render("auth");
+  const itemNotFoundError = req.flash("error");
+  res.render("auth", { itemNotFoundError: itemNotFoundError });
 });
 server.get("/index", isLoggedIn, async function (req, res) {
   req.flash("success", "successfully logged in!!");
@@ -70,6 +80,9 @@ server.get("/index", isLoggedIn, async function (req, res) {
     modifiedImagePath = "../images/uploads/default.jpg";
   }
   // const modifiedImagePath = userData.profilePic.replace('public\\', '../');
+
+  res.locals.extractDate = extractDate;
+
   res.render("index", {
     successFlash,
     userData,
@@ -88,10 +101,35 @@ server.post(
   "/register",
   upload.single("profilePic"),
   async function (req, res) {
+    // if (!req.file) {
+    //   const picNotUploadError = req.flash("error", "Please upload a profile picture");
+    //   return res.redirect("/" );
+    // }
+    let profilePicPath;
+    if (!req.file) {
+      // Set default image path if no image is uploaded
+      profilePicPath = "../images/uploads/default.jpg";
+    } else {
+      profilePicPath = req.file.path;
+    }
+    if (!req.body.username) {
+      const userNameNotFoundError = req.flash("error", "Please provide a username");
+      return res.redirect("/");
+    }
+    if (!req.body.password) {
+      const passwordNotFoundError = req.flash("error", "Please provide a password");
+      return res.redirect("/");
+    }
+    // Check if user already exists
+    const existingUser = await User.findOne({ username: req.body.username });
+    if (existingUser) {
+      req.flash("error", "This Username already in use , try another one.");
+      return res.redirect("/");
+    }
     let userData = new User({
       username: req.body.username,
       email: req.body.email,
-      profilePic: req.file.path,
+      // profilePic: req.file.path,
       password: req.body.password,
     });
     await User.register(userData, req.body.password).then((registeredUser) => {
@@ -121,6 +159,7 @@ server.get("/logout", (req, res, next) => {
   });
 });
 
+//!Work as protection route
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();

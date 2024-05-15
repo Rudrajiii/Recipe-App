@@ -25,3 +25,8 @@ if (isPageReloaded()) {
   console.log("Page has been loaded normally");
 }
 count > 0 ? document.querySelector(".alert-success").style.display = "none": null;
+
+document.querySelector(".history").addEventListener("click",(event)=>{
+  event.preventDefault();
+});
+

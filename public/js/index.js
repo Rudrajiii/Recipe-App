@@ -26,11 +26,21 @@ document.getElementById('btn').addEventListener('click', async () => {
             document.getElementById('result').appendChild(document.createElement('br'));
 
         });
+
+        document.getElementById('input').value = '';
     } catch (error) {
 
         console.error('There was a problem with the fetch operation:', error);
 
     }
 
+});
+
+// Listen for "Enter" key press on the input field
+document.getElementById('input').addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent default form submission
+        document.getElementById('btn').click(); // Trigger click event on the generate button
+    }
 });
 
