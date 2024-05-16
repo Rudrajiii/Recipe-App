@@ -217,18 +217,18 @@ function sendRegistrationEmail(userEmail , userName) {
 
   let response = {
     body: {
-      name: "From CoderVicky",
-      intro: `Hey ${userName} Welcome to the Recipie.in. Here you can find your favorite recipes in just one single prompt`,
+      name: "From Vicky",
+      intro: `Hey ${userName},\n\nWelcome to Recipie.in! Here, you can discover a world of delicious recipes with just a single prompt.`,
       table: {
         data: [
           {
-            reciver: "XYZ Anonymus",
-            description: "A Backend Developer",
+            reciver: userName,
+            description: "Your personal recipe assistant",
             status: "Registration Successful.",
           }
         ]
       },
-      outro: "Looking forward to helping you."
+      outro: "We're excited to have you on board. Happy cooking!😊❤️‍🔥"
     }
   }
 
@@ -237,7 +237,7 @@ function sendRegistrationEmail(userEmail , userName) {
   let message = {
     from: EMAIL,
     to: userEmail, // Use captured email address
-    subject: "Successful Registration",
+    subject: "Welcome to Recipie.in - Registration Successful ",
     html: mail
   }
 

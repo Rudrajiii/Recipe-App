@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Bitter:ital,wght@0,100..900;1,100..900&family=Holtwood+One+SC&family=Kalam:wght@300;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Strike&display=swap");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+body, html {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+}
+
+.leftContainerPart {
+  width: 50vw;
+  height: 100%;
+}
+.leftContainerPart img {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  filter: brightness(1.1) contrast(1.2) saturate(1.2) opacity(0.9);
+}
+
+.rightContainerPart {
+  width: 50vw;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rightContainerPart #veri {
+  font-family: "Kalam", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.rightContainerPart p {
+  font-family: "Kalam", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.rightContainerPart .formWrapper {
+  width: 30vw;
+  height: 90vh;
+  border-radius: 0.7rem;
+  display: grid;
+  place-items: center;
+  position: relative;
+  background: #E0E6EC;
+}
+.rightContainerPart .formWrapper #socials {
+  width: 100%;
+  height: 9vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.rightContainerPart .formWrapper #socials a {
+  text-decoration: none;
+  color: #0287FF;
+  font-size: 2rem;
+}
+.rightContainerPart .formWrapper .form {
+  width: 100%;
+  height: 70vh;
+}
+.rightContainerPart .formWrapper #reg-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 70vh;
+  gap: 2vh;
+}
+.rightContainerPart .formWrapper #reg-form .head {
+  text-align: center;
+}
+.rightContainerPart .formWrapper #reg-form .head h5 {
+  color: #000;
+  font-family: "Kalam", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.rightContainerPart .formWrapper #reg-form .head h3 {
+  color: #000000;
+  font-family: "Kalam", cursive;
+  font-weight: 700;
+  font-size: 2rem;
+  font-style: normal;
+}
+.rightContainerPart .formWrapper #reg-form .head h3 span {
+  color: #0287FF;
+}
+.rightContainerPart .formWrapper #reg-form #profilePic {
+  margin-left: 1.5rem;
+  font-size: 0.87rem;
+  border: none;
+  border-radius: 0.7rem;
+  padding: 0.3rem;
+  font-family: "Kalam", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.rightContainerPart .formWrapper #reg-form #password, .rightContainerPart .formWrapper #reg-form #email, .rightContainerPart .formWrapper #reg-form #username {
+  width: 220px;
+  border-radius: 0.4rem;
+  border: none;
+  padding: 0.3rem;
+  background: #fff;
+  font-family: "Kalam", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.rightContainerPart .formWrapper #reg-form .btn {
+  margin-right: 6.2rem;
+  background: #0287FF;
+  border: none;
+  color: white;
+  border-radius: 0.7rem;
+  font-family: "Kalam", cursive;
+  font-weight: 400;
+  font-style: normal;
+}/*# sourceMappingURL=auth.css.map */
