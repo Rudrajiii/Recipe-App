@@ -23,6 +23,7 @@ body , html{
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     #veri{
                 font-family: "Kalam", cursive;
                 font-weight: 400;
@@ -49,7 +50,7 @@ body , html{
             justify-content: space-evenly;
             a{
                 text-decoration: none;
-                color: #0287FF;
+                color: #000000;
                 font-size: 2rem;
             }
         }

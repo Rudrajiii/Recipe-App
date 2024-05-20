@@ -109,6 +109,10 @@ server.post(
     //   return res.redirect("/" );
     // }
     let profilePicPath;
+    if (!req.body.email) {
+      req.flash("error", "Please provide an email address");
+      return res.redirect("/");
+    }
     if (!req.file) {
       // Set default image path if no image is uploaded
       profilePicPath = "../images/uploads/default.jpg";
@@ -129,13 +133,13 @@ server.post(
     // Check if user already exists
     const existingUser = await User.findOne({ username: req.body.username });
     if (existingUser) {
-      req.flash("error", "This Username already in use , try another one.");
+      req.flash("error", "Username already in use");
       return res.redirect("/");
     }
     let userData = new User({
       username: req.body.username,
       email: userEmail,
-      // profilePic: req.file.path,
+      profilePic: req.file.path,
       password: req.body.password,
     });
     await User.register(userData, req.body.password).then((registeredUser) => {

@@ -35,6 +35,7 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 .rightContainerPart #veri {
   font-family: "Kalam", cursive;
@@ -64,7 +65,7 @@ body, html {
 }
 .rightContainerPart .formWrapper #socials a {
   text-decoration: none;
-  color: #0287FF;
+  color: #000000;
   font-size: 2rem;
 }
 .rightContainerPart .formWrapper .form {
