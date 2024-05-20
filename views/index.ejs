@@ -36,16 +36,24 @@
         </div>
     </nav>
 
-    <h1>Welcome! <%= userData.username %></h1>
+    <!-- <h1>Welcome! <%= userData.username %></h1> -->
     <div class="main">
-        <h1>Recipie app..</h1>
-        <textarea name="input" id="input"></textarea>
-        <button id="btn">Generate</button>
+        <div class="grabber">
+            <img src="../images/uploads/default.jpg" alt="pic" class="userProfile">
+        <textarea name="input" id="input" placeholder="Enter Your Recipie Prompt"></textarea>
+        <button id="btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></button>
+        </div>
     </div>
-    
+<div class="response">
+    <div class="demoItem">
+        <div class="cpyItem">Generate a recipie of tasty Chicken Biriyani In indian Style.</div>
+        <div class="cpyItem b">Generate a recipie of dilisious Japanese Food also tell me the steps of cooking.</div>
+        <div class="cpyItem">Generate a recipie of a Tea also mention all the ingrediants used over the process.</div>
+    </div>
     <div id="result"></div>
+</div>
 
-    <h2>Search History</h2>
+    <!-- <h2>Search History</h2>
     <ul id="searchHistory">
         <% searchHistory.forEach((item, index) => { %>
             <div id="hist">
@@ -55,7 +63,7 @@
                 <button class="copy-button" data-index="<%= index %>">Copy</button>
             </div>
         <% }); %>
-    </ul>    
+    </ul>     -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>
