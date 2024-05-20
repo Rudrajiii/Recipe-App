@@ -53,13 +53,12 @@ nav .profile_pic {
   align-items: center;
   justify-content: center;
   margin-right: 5px;
-  width: 15vw;
+  width: 25vw;
   right: 25vw;
 }
 nav .profile_pic img {
-  width: 40px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
+  width: 80px;
+  height: 60px;
 }
 nav .profile_pic p {
   width: 100%;
@@ -115,7 +114,7 @@ nav .logoutButton a {
   overflow: hidden;
 }
 .main .grabber .userProfile {
-  width: 55px;
+  width: 40px;
   aspect-ratio: 1/1;
   border-radius: 50%;
   mix-blend-mode: multiply;
@@ -125,6 +124,7 @@ nav .logoutButton a {
   border-radius: 50%;
   width: 45px;
   aspect-ratio: 1/1;
+  background: white;
 }
 
 .response {
@@ -132,11 +132,29 @@ nav .logoutButton a {
   display: flex;
   gap: 2vh;
 }
+.response #bot {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  mix-blend-mode: multiply;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.response h4 {
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
 .response #result {
   width: 70vw;
   border-top-left-radius: 15px;
   border-bottom-right-radius: 15px;
   padding: 2rem;
+  position: relative;
   background: #E0E6EC;
   margin: 1rem;
   border: none !important;
@@ -147,9 +165,15 @@ nav .logoutButton a {
 .response .demoItem {
   width: 30vw;
   position: relative;
-  padding: 1rem;
+  padding: 0.8rem;
   justify-content: space-evenly;
   align-items: center;
+}
+.response .demoItem h2 {
+  font-family: "Kalam", cursive;
+  font-weight: 600;
+  font-style: normal;
+  color: rgba(0, 0, 0, 0.742);
 }
 .response .demoItem .b {
   margin-left: 7.5rem;
@@ -159,6 +183,7 @@ nav .logoutButton a {
   aspect-ratio: 1/0.6;
   border-radius: 0.8rem;
   padding: 1rem;
+  position: relative;
   box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   border-radius: 10px 20px;
   background: #E0E6EC;
@@ -166,4 +191,12 @@ nav .logoutButton a {
   font-family: "Kalam", cursive;
   font-weight: 400;
   font-style: normal;
+}
+.response .demoItem .cpyItem .copy {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.3rem 0.8rem;
 }/*# sourceMappingURL=style.css.map */
