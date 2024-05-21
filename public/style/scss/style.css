@@ -20,6 +20,8 @@ h1 {
 
 nav {
   width: 100%;
+  background: #111826;
+  color: #E0E6EC;
   height: 12vh;
   display: flex;
   align-items: center;
@@ -39,12 +41,12 @@ nav .history a {
   text-decoration: none;
   margin-left: 10px;
   gap: 2vh;
-  color: black;
+  color: #E0E6EC;
 }
 nav .history .fa-solid {
   display: flex;
   align-items: center;
-  color: black;
+  color: #E0E6EC;
 }
 nav .profile_pic {
   position: absolute;
@@ -131,6 +133,7 @@ nav .logoutButton a {
   width: 100%;
   display: flex;
   gap: 2vh;
+  background: #111826;
 }
 .response #bot {
   width: 70px;
@@ -163,6 +166,7 @@ nav .logoutButton a {
   font-style: normal;
 }
 .response .demoItem {
+  background: #111826;
   width: 30vw;
   position: relative;
   padding: 0.8rem;
@@ -184,7 +188,6 @@ nav .logoutButton a {
   border-radius: 0.8rem;
   padding: 1rem;
   position: relative;
-  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   border-radius: 10px 20px;
   background: #E0E6EC;
   border: 1px solid;
