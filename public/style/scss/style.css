@@ -34,6 +34,9 @@ nav .history {
   display: grid;
   place-items: center;
   position: absolute;
+  font-family: "Kalam", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 nav .history a {
   display: flex;
@@ -69,6 +72,14 @@ nav .profile_pic p {
   display: grid;
   place-items: center;
 }
+nav .settings {
+  position: absolute;
+  right: 3rem;
+}
+nav .settings .fa-gear {
+  color: #E0E6EC;
+  font-size: 2rem;
+}
 nav .logoutButton {
   position: absolute;
   margin-left: 1rem;
@@ -97,12 +108,24 @@ nav .logoutButton a {
   width: 100%;
   min-height: 10vh;
 }
+.main .feedback {
+  font-size: 2rem;
+  padding: 0 0.7rem;
+  display: flex;
+  justify-content: center;
+  font-size: 1.4rem;
+  gap: 1vh;
+  font-family: "Kalam", cursive;
+  font-weight: 400;
+  font-style: normal;
+  align-items: center;
+}
 .main .grabber {
   width: 70%;
   gap: 1.5vh;
   display: flex;
   text-align: end;
-  margin-left: 23rem;
+  margin-left: 13rem;
   align-items: center;
   justify-content: center;
 }

@@ -16,7 +16,7 @@
     <!-- Flash MessagesetUp Code -->
     <% if(successFlash) { %>
         <div class="alert alert-success alert-dismissible  show" role="alert">
-            <strong>Hey! <%= userData.username %> </strong><%= successFlash %>
+            <strong>Hey! <%= userData.username %> 👋</strong><%= successFlash %>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
               <span aria-hidden="true">&times;</span>
             </button>
@@ -29,15 +29,25 @@
         </div>
         <div class="profile_pic">
             <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/my-recipes-logo.png" alt="Pic">
-            <p>Hey! <%= userData.username %></p>
+            <p>Hey! <%= userData.username %> 👋</p>
         </div>
         <div class="logoutButton">
             <a href="/logout">logout</a>
+        </div>
+        <div class="settings">
+            <a href="/profile/<%= userData._id %>">
+                <i class="fa-solid fa-gear"></i>
+            </a>
         </div>
     </nav>
 
     <!-- <h1>Welcome! <%= userData.username %></h1> -->
     <div class="main">
+        <div class="feedback">
+            feedback
+            <i class="fa-regular fa-comment-dots"></i>
+            
+        </div>
         <div class="grabber">
             <img src="<%= modifiedImagePath %>" alt="pic" class="userProfile">
         <textarea name="input" id="input" placeholder="Enter Your Recipie Prompt"></textarea>

@@ -21,10 +21,14 @@ nav{
     .history{
         width: 10vw;
         font-size: 1.3rem;
+        // border: 2px solid black;
         left: 10px;
         display: grid;
         place-items: center;
         position: absolute;
+        font-family: "Kalam", cursive;
+        font-weight: 400;
+        font-style: normal;
         a{
             display: flex;
             align-items: center;
@@ -62,6 +66,15 @@ nav{
             place-items: center;
          }
     }
+    .settings{
+        // border: 2px solid black;
+        position: absolute;
+        right: 3rem;
+        .fa-gear{
+            color: #E0E6EC;
+            font-size: 2rem;
+        }
+    }
     .logoutButton{
         position: absolute;
         margin-left: 1rem;
@@ -91,12 +104,25 @@ nav{
     display: flex;
     width: 100%;
     min-height: 10vh;
+    .feedback{
+        font-size: 2rem;
+        padding: 0 .7rem;
+        display: flex;
+        justify-content: center;
+        font-size: 1.4rem;
+        gap: 1vh;
+        font-family: "Kalam", cursive;
+        font-weight: 400;
+        font-style: normal;
+        align-items: center;
+        
+    }
     .grabber{
         width: 70%;
         gap: 1.5vh;
         display: flex;
         text-align: end;
-        margin-left: 23rem;
+        margin-left: 13rem;
         align-items: center;
         justify-content: center;
         #input{

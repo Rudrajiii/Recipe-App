@@ -254,6 +254,60 @@ function sendRegistrationEmail(userEmail , userName) {
     });
 }
 
+//*Update User Profile
+server.get("/profile/:userId", isLoggedIn, async function(req, res) {
+  if (req.user) {
+    const userId = req.user._id;
+
+    try {
+      const userData = await User.findById(userId);
+      
+      res.render("profile", { userData });
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  } else {
+    // Handle case when user is not logged in
+    res.redirect("/verify");
+  }
+});
+
+
+
+server.post("/profile/update", isLoggedIn, upload.single("profilePic"), async function(req, res) {
+  const userId = req.user._id;
+
+  try {
+    // Find the user by ID
+    const user = await User.findById(userId);
+
+    // Update email if provided
+    user.email = req.body.email || user.email;
+    user.username = req.body.username || user.username;
+
+    // Update profile picture if a new one is uploaded
+    if (req.file) {
+      user.profilePic = req.file.path;
+    }
+
+    // Save the updated user object
+    await user.save();
+
+    // Set a success flash message
+    req.flash("success", "Profile successfully updated!");
+
+    // Redirect to the index page with the success flash message
+    res.redirect("/index");
+  } catch (error) {
+    console.error("Error updating user information:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
 server.listen(8080, () => {
   console.log("listening on port 8080");
 });
+
+
