@@ -34,19 +34,58 @@
         <div class="logoutButton">
             <a href="/logout">logout</a>
         </div>
-        <div class="settings">
-            <a href="/profile/<%= userData._id %>">
-                <i class="fa-solid fa-gear"></i>
-            </a>
+        <div class="settings dropdown">
+            <button  data-bs-toggle="dropdown"  aria-expanded="false" style="border: none; background: transparent;">
+                <i class="fa-solid fa-gear">
+                </i>
+            </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/profile/<%= userData._id %>">Edit Profile</a></li>
+                    <li><a class="dropdown-item" href="viewProfile">View Profile</a></li>
+                    <li><a class="dropdown-item" href="/logout">logout</a></li>
+                </ul>
         </div>
     </nav>
+
+<!--? Special Toggle's -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: black;">Give Your Feedback ⭐</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--? Special Toggle's -->
+
 
     <!-- <h1>Welcome! <%= userData.username %></h1> -->
     <div class="main">
         <div class="feedback">
             feedback
-            <i class="fa-regular fa-comment-dots"></i>
-            
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">
+                <i class="fa-regular fa-comment-dots"></i>
+            </button>
         </div>
         <div class="grabber">
             <img src="<%= modifiedImagePath %>" alt="pic" class="userProfile">
@@ -58,26 +97,20 @@
         <div class="demoItem">
             <h2 style="color: whitesmoke;">Demo Prompts 📃</h2>
             <div class="cpyItem">Generate a recipie of tasty Chicken Biriyani In indian Style.
-                <button class="copy" data-copy-id="1" >Copy</button>
+                <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
             </div>
             <div class="cpyItem b">Generate a recipie of dilisious Japanese Food also tell me the steps of cooking.
-                <button class="copy" data-copy-id="2" >Copy</button>
-            </div>
+                <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>            </div>
             <div class="cpyItem">Generate a recipie of a Tea also mention all the ingrediants used over the process.
-                <button class="copy" data-copy-id="3">Copy</button>
-            </div>
+                <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>            </div>
             <div class="cpyItem b">Generate a recipie of a Tea also mention all the ingrediants used over the process.
-                <button class="copy" data-copy-id="4">Copy</button>
-            </div>
+                <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>            </div>
             <div class="cpyItem">Generate a recipie of a Tea also mention all the ingrediants used over the process.
-                <button class="copy" data-copy-id="5">Copy</button>
-            </div>
+                <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>            </div>
             <div class="cpyItem b">Generate a recipie of a Tea also mention all the ingrediants used over the process.
-                <button class="copy" data-copy-id="6">Copy</button>
-            </div>
+                <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>            </div>
             <div class="cpyItem ">Generate a recipie of a Tea also mention all the ingrediants used over the process.
-                <button class="copy" data-copy-id="6">Copy</button>
-            </div>
+                <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>            </div>
         </div>
             <div id="result">
                 <img id="bot" src="https://tse3.mm.bing.net/th?id=OIP.JU23CZMWiiKqQJl1mKiXQQHaHa&pid=Api&P=0&h=180" alt="">

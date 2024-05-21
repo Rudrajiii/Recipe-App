@@ -64,6 +64,7 @@ server.get("/", function (req, res) {
 server.get("/index", isLoggedIn, async function (req, res) {
   req.flash("success", "successfully logged in!!");
   const successFlash = req.flash("success");
+  // const errorFlash = req.flash("error");
   console.log(successFlash);
   const userData = await User.findOne({
     username: req.user.username,
@@ -181,6 +182,10 @@ function isLoggedIn(req, res, next) {
 server.get("/api", async function (req, res) {
   try {
     const userPrompt = req.query.prompt;
+    // if (!userPrompt || userPrompt.trim() === "") {
+    //   req.flash("error", "Input prompt cannot be empty");
+    //   return res.redirect("/index"); // Adjust the redirect path to your form page
+    // }
     const userId = req.user._id;
     const apiData = await main(userPrompt);
     res.json({ response: apiData }); //JSON
@@ -191,7 +196,8 @@ server.get("/api", async function (req, res) {
     await searchHistory.save();
   } catch (error) {
     console.error(error);
-    res.status(500).send("Internal Server Error");
+    req.flash("error", "Internal Server Error");
+    res.redirect("/index");
   }
 });
 
@@ -305,6 +311,9 @@ server.post("/profile/update", isLoggedIn, upload.single("profilePic"), async fu
   }
 });
 
+server.get("/viewProfile" , function(req , res){
+  res.send("Welcome");
+})
 
 server.listen(8080, () => {
   console.log("listening on port 8080");

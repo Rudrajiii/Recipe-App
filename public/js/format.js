@@ -33,6 +33,10 @@ copyButtons.forEach(button => {
 
 //**copying the div content
 document.addEventListener('DOMContentLoaded', (event) => {
+    // Initialize Bootstrap Popovers
+    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
+
     document.querySelectorAll('.copy').forEach(button => {
         button.addEventListener('click', () => {
             const parentDiv = button.parentElement;
@@ -43,11 +47,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 .join(' ');
 
             navigator.clipboard.writeText(textToCopy).then(() => {
-                // Change the button text to "Copied!"
-                button.textContent = "Copied!";
-                // Revert the button text back to "Copy" after 2 seconds
+                // Show the popover
+                const popover = bootstrap.Popover.getInstance(button); // Get the popover instance
+                popover.show();
+
+                // Hide the popover after 2 seconds
                 setTimeout(() => {
-                    button.textContent = "Copy";
+                    popover.hide();
                 }, 2000);
             }).catch(err => {
                 alert('Failed to copy: ', err);
@@ -55,3 +61,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     });
 });
+
+
