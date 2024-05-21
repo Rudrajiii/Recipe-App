@@ -94,9 +94,49 @@ nav{
         }
     }
 }
-
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {   
+  border-color: #cde0f3;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #cde0f3;
+  outline: 0 none;
+}
+.form-control:focus {border-color:rgb(63, 183, 248)!important;
+    -webkit-box-shadow: none!important;
+        -moz-box-shadow: none!important;
+        box-shadow: none!important;
+        font-family: "Kalam", cursive !important;
+        font-weight: 400 !important;
+        font-style: normal  !important;
+    }
+.btn-primary:focus,
+.btn-primary:active,
+.btn-close:focus{
+        box-shadow:none !important;
+        outline:0px !important;
+    }
+.col-form-label , #exampleModalLabel , #offcanvasRightLabel , .d-inline-flex{
+        font-family: "Kalam", cursive !important;
+        font-weight: 400 !important;
+        font-style: normal  !important;
+}
 #hist{
     display: flex;
+    flex-direction: column;
+
 }
 
 .main{

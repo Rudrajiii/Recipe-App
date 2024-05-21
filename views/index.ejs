@@ -24,8 +24,8 @@
     <% }%>
     <!-- Nav Bar Code -->
     <nav>
-        <div class="history">
-            <a href=""><i class="fa-solid fa-clock-rotate-left"></i>History</a>
+        <div class="history" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+            <a  class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Search History" href=""><i class="fa-solid fa-clock-rotate-left"></i>History</a>
         </div>
         <div class="profile_pic">
             <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/my-recipes-logo.png" alt="Pic">
@@ -35,8 +35,8 @@
             <a href="/logout">logout</a>
         </div>
         <div class="settings dropdown">
-            <button  data-bs-toggle="dropdown"  aria-expanded="false" style="border: none; background: transparent;">
-                <i class="fa-solid fa-gear">
+            <button  data-bs-toggle="dropdown"  aria-expanded="false" style="border: none; background: transparent;" >
+                <i  data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="settings" class="fa-solid fa-gear">
                 </i>
             </button>
                 <ul class="dropdown-menu">
@@ -46,6 +46,40 @@
                 </ul>
         </div>
     </nav>
+
+
+<!--? History Toggleing -->
+
+<!-- <button >Enable body scrolling</button> -->
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel" style="font-weight: 600; font-size: 1.7rem;">Search History⏱️</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul id="searchHistory">
+            <% searchHistory.forEach((item, index) => { %>
+                <div id="hist">
+                    <p class="d-inline-flex gap-1">
+                        <a style="background: #ebe6e6; border: none; color: black;" id="history<%= index %>" class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <%= extractDate(item.timestamp) %>
+                        </a>
+                      </p>
+                      <div class="collapse" id="collapseExample" style="margin-bottom: 1rem;">
+                        <div id="history<%= index %>" class="card card-body">
+                            <%= item.query %>
+                        </div>
+                      </div>
+                      <hr>
+                    <!-- <button class="copy" data-copy-id="1"data-index="<%= index %>">Copy</button> -->
+                </div>
+            <% }); %>
+        </ul>  
+    </div>
+  </div>
+
+<!--? History Toggleing -->
 
 <!--? Special Toggle's -->
 
@@ -69,8 +103,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="button" style="background: #ebe6e6;" class="btn" data-bs-dismiss="modal">Close</button>
+        <button type="button" style="background: rgb(63, 183, 248); color: #ffffff;" class="btn">Send message</button>
       </div>
     </div>
   </div>
@@ -81,10 +115,10 @@
 
     <!-- <h1>Welcome! <%= userData.username %></h1> -->
     <div class="main">
-        <div class="feedback">
+        <div class="feedback" >
             feedback
             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">
-                <i class="fa-regular fa-comment-dots"></i>
+                <i  data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Feedback" class="fa-regular fa-comment-dots"></i>
             </button>
         </div>
         <div class="grabber">
@@ -117,20 +151,7 @@
                 <h4>Start Generating Your Favourite Recipie's😋</h4>
             </div>
     </div>
-
-    <!-- <h2>Search History</h2>
-    <ul id="searchHistory">
-        <% searchHistory.forEach((item, index) => { %>
-            <div id="hist">
-                <li id="history<%= index %>">
-                    <%= item.query %> - <%= extractDate(item.timestamp) %>
-                </li>
-                <button class="copy" data-copy-id="1"data-index="<%= index %>">Copy</button>
-            </div>
-        <% }); %>
-    </ul>     -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
 </body>
 </html>
 
