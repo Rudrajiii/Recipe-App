@@ -1,14 +1,39 @@
+
+const btn = document.getElementById("btn");
+const progressBar = document.getElementById("progressBar");
+
+// Function to show the loading animation
+function showLoadingAnimation() {
+    progressBar.style.display = "block";
+}
+
+// Function to hide the loading animation
+function hideLoadingAnimation() {
+    progressBar.style.display = "none";
+}
 document.getElementById('btn').addEventListener('click', async () => {
     try {
 
-        const userInput = document.getElementById('input').value;
-        console.log(userInput);
-
         
+        const userInput = document.getElementById('input').value;
+
+        showLoadingAnimation(); 
+        // console.log(userInput);
+        const startTime = performance.now();
 
         // Fetch data from API with user input as prompt
 
-        const response = await fetch(`/api?prompt=${encodeURIComponent(userInput)}`);
+        const response = await fetch(`/api?prompt=${encodeURIComponent(userInput)}` , {
+            headers: {
+                'Cache-Control': 'no-cache, no-store, must-revalidate', // Force the browser not to cache the response
+            }
+        });
+
+        // End time after receiving the response
+        const endTime = performance.now();
+
+        // Calculate delay time
+        const delayTime = endTime - startTime;
         if (!response.ok) {
 
             throw new Error('Network response was not ok');
@@ -21,6 +46,7 @@ document.getElementById('btn').addEventListener('click', async () => {
         const formattedResponse = data.response.split('\n').map(line => document.createTextNode(line));
 
         document.getElementById('result').textContent = ''; // Clear previous content
+
         formattedResponse.forEach(node => {
 
             document.getElementById('result').appendChild(node);
@@ -30,10 +56,13 @@ document.getElementById('btn').addEventListener('click', async () => {
         });
 
         document.getElementById('input').value = '';
+        
     } catch (error) {
 
         console.error('There was a problem with the fetch operation:', error);
 
+    } finally{
+        hideLoadingAnimation();
     }
 
 });
@@ -45,4 +74,3 @@ document.getElementById('input').addEventListener('keydown', (event) => {
         document.getElementById('btn').click(); // Trigger click event on the generate button
     }
 });
-

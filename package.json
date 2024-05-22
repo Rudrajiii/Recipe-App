@@ -26,6 +26,7 @@
     "nodemailer": "^6.9.13",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^8.0.0"
+    "passport-local-mongoose": "^8.0.0",
+    "spellchecker": "^3.7.1"
   }
 }

@@ -1,3 +1,5 @@
+
+
 //*Date Formating
 function extractDate(timestampString) {
     const regex = /\b(\w{3}\s\w{3}\s\d{1,2}\s\d{4})\b/;
@@ -101,3 +103,6 @@ if (toastTrigger) {
     toastBootstrap.show()
   })
 }
+
+
+

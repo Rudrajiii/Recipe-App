@@ -142,7 +142,7 @@ server.post(
     let userData = new User({
       username: req.body.username,
       email: userEmail,
-      profilePic: req.file.path,
+      profilePic: profilePicPath || "../images/uploads/default.jpg",
       password: req.body.password,
     });
     await User.register(userData, req.body.password).then((registeredUser) => {
@@ -316,7 +316,15 @@ server.post("/profile/update", isLoggedIn, upload.single("profilePic"), async fu
 server.get("/viewProfile" , isLoggedIn ,async function(req , res){
   const userId = req.user._id;
   const user = await User.findById(userId);
-  const profile = user.profilePic.replace("public\\", "../")
+  let profile;
+
+  if(!user.profilePic){
+    profile = "../images/uploads/default.jpg";
+
+  }else{
+    profile = user.profilePic.replace("public\\", "../");
+  } 
+
   console.log(user);
   res.render("viewProfile" ,{
     user,

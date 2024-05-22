@@ -275,3 +275,22 @@ input[type="color"]:focus,
     }
     
 }
+
+footer{
+    width: 100%;
+    height: 10vh;
+    background: #E0E6EC;
+    border: 2px solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    h2{
+        font-size: 1.3rem;
+        font-family: "Kalam", cursive;
+        font-weight: 400;
+        font-style: normal;
+        a{
+            text-decoration: none;
+        }
+    }
+}
