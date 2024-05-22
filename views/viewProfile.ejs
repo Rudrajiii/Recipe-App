@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/scss/view.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+          <div class="profile-picture">
+            <img src="<%= profile %>" alt="Profile Picture">
+          </div>
+          <h2 class="name"><%= user.username %></h2>
+          <h3 class="username">@<%= user.username %></h3>
+          <p class="description"><%= user.email %></p>
+          <a href="/index" class="button">Go to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

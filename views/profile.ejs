@@ -3,22 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Recipie</title>
+    <link rel="stylesheet" href="../style/scss/auth.css">
 </head>
 <body>
-    <h1>Edit Profile</h1>
-<form action="/profile/update" method="post" enctype="multipart/form-data">
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" value="<%= userData.email %>" >
-  <label for="username">username:</label>
-  <input type="text" id="email" name="username" value="<%= userData.username %>" required>
-  <br>
-  <label for="profilePic">Profile Picture:</label>
-  <input type="file" id="profilePic" name="profilePic">
-  <br>
-  <button type="submit">Update Profile</button>
-</form>
+    <div class="leftContainerPart">
+      <img src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dmFyaXR5JTIwb2YlMjBmb29kJTIwaW1hZ2V8ZW58MHx8MHx8fDA%3D" alt="FoodImage">
+    </div>
     <!-- <a href="/profile/:userId/">Update Info</a> -->
+      <div class="rightContainerPart">
+        <div class="formWrapper">
+            <div id="socials">
+                <a href="">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+            </div>
+            <div class="form">
+                <form id="reg-form" action="/profile/update" method="post" enctype="multipart/form-data">
+                    <div class="head">
+                        <h3>Welcome to <span>Recipie.in</span></h3>
+                        <h5>Edit Your Information</h5>
+                    </div>
+                        <input name="username" type="text" autocomplete="off" id="username" placeholder="Username" value="<%= userData.username %>"/>
+                        <input name="email" type="email" autocomplete="off" id="email" placeholder="Email" value="<%= userData.email %>"/>
+                        <input name="password"  type="password" autocomplete="off" id="password" placeholder="Password" value="<%= userData.password %>"/>
+                        <!-- <input name="profilePic" type="file" id="profilePic" accept="image/*"> -->
+                        <input  type="file" id="profilePic" name="profilePic">
+                        <input class="btn" type="submit" value="Submit form" />
+                </form>
+            </div>
+            <a id="veri" href="/index" style="color: #0287FF;">Go Back to Home</a>
+        </div>
+    </div>
 </body>
 </html>
 

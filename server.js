@@ -15,6 +15,7 @@ const multer = require("multer");
 const nodemailer = require("nodemailer");
 const {EMAIL , PASSWORD} = require("./env.js");
 const Mailgen = require("mailgen");
+const userFeedbacks = require("./model/userFeedbacks.js");
 
 passport.use(new localStrategy(User.authenticate()));
 
@@ -32,6 +33,7 @@ server.set("view engine", "ejs");
 server.set("views", path.join(__dirname, "views"));
 server.use(express.static("public"));
 server.use(bodyParser.urlencoded({ extended: true }));
+server.use(bodyParser.json());
 server.use(cookieParser());
 server.use(
   session({
@@ -311,9 +313,35 @@ server.post("/profile/update", isLoggedIn, upload.single("profilePic"), async fu
   }
 });
 
-server.get("/viewProfile" , function(req , res){
-  res.send("Welcome");
+server.get("/viewProfile" , isLoggedIn ,async function(req , res){
+  const userId = req.user._id;
+  const user = await User.findById(userId);
+  const profile = user.profilePic.replace("public\\", "../")
+  console.log(user);
+  res.render("viewProfile" ,{
+    user,
+    profile
+  });
 })
+
+server.post('/submit-feedback', async (req, res) => {
+  const { name, message } = req.body;
+
+  const feedback = new userFeedbacks({
+      name: name || 'Anonymous', // Default to 'Anonymous' if name is not provided
+      message
+  });
+
+  try {
+      await feedback.save();
+      res.status(200).send('Feedback submitted successfully!');
+  } catch (error) {
+      console.error('Error saving feedback:', error);
+      res.status(500).send('Error submitting feedback.');
+  }
+});
+
+
 
 server.listen(8080, () => {
   console.log("listening on port 8080");

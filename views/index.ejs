@@ -84,31 +84,32 @@
 <!--? Special Toggle's -->
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: black;">Give Your Feedback ⭐</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" style="background: #ebe6e6;" class="btn" data-bs-dismiss="modal">Close</button>
-        <button type="button" style="background: rgb(63, 183, 248); color: #ffffff;" class="btn">Send message</button>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: black;">Give Your Feedback ⭐</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="feedbackForm" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Name:</label>
+              <input name="recipient_name" type="text" class="form-control" id="recipient-name">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Message:</label>
+              <textarea name="message_text" class="form-control" id="message-text"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" style="background: #ebe6e6;" class="btn" data-bs-dismiss="modal" id="btnClose">Close</button>
+          <button type="button" style="background: rgb(63, 183, 248); color: #ffffff;" class="btn" id="btnSubmit">Send message</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  
 
 <!--? Special Toggle's -->
 
@@ -130,20 +131,20 @@
     <div class="response">
         <div class="demoItem">
             <h2 style="color: whitesmoke;">Demo Prompts 📃</h2>
-            <div class="cpyItem">Generate a recipie of tasty Chicken Biriyani In indian Style.
+            <div class="cpyItem">⭐ Generate a recipie of tasty Chicken Biriyani In indian Style.
                 <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
             </div>
-            <div class="cpyItem b">Generate a recipie of dilisious Japanese Food also tell me the steps of cooking.
+            <div class="cpyItem b">⭐ Generate a recipie of dilisious Japanese Food also tell me the steps of cooking.
                 <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>            </div>
-            <div class="cpyItem">Generate a recipie of a Tea also mention all the ingrediants used over the process.
+            <div class="cpyItem">⭐ Generate a recipie of a Tea also mention all the ingrediants used over the process.
                 <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>            </div>
-            <div class="cpyItem b">Generate a recipie of a Tea also mention all the ingrediants used over the process.
+            <div class="cpyItem b">⭐ Generate a recipie of a Tea also mention all the ingrediants used over the process.
                 <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>            </div>
-            <div class="cpyItem">Generate a recipie of a Tea also mention all the ingrediants used over the process.
+            <div class="cpyItem">⭐ Generate a recipie of a Tea also mention all the ingrediants used over the process.
                 <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>            </div>
-            <div class="cpyItem b">Generate a recipie of a Tea also mention all the ingrediants used over the process.
+            <div class="cpyItem b">⭐ Generate a recipie of a Tea also mention all the ingrediants used over the process.
                 <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>            </div>
-            <div class="cpyItem ">Generate a recipie of a Tea also mention all the ingrediants used over the process.
+            <div class="cpyItem ">⭐ Generate a recipie of a Tea also mention all the ingrediants used over the process.
                 <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>            </div>
         </div>
             <div id="result">

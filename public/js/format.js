@@ -65,3 +65,30 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+const btnSubmit = document.getElementById('btnSubmit');
+const btnClose = document.getElementById('btnClose');
+
+btnSubmit.addEventListener('click', (event) => {
+    const name = document.getElementById('recipient-name').value;
+    const message = document.getElementById('message-text').value;
+
+    fetch('/submit-feedback', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, message }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+    document.getElementById('recipient-name').value = '';
+    document.getElementById('message-text').value = '';
+    btnClose.click();
+});
+
