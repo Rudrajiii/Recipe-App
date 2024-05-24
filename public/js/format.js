@@ -119,14 +119,29 @@ function checkWindowSize(){
     const btn = document.getElementById('btn');
     const h2ka = document.getElementById('h2ka');
     const h2kaa = document.getElementById('h2kaa');
+    const grabber = document.querySelector('.grabber');
+    const result = document.getElementById('result');
+    const b = document.querySelector('.b');
 
-    // if (window.innerWidth < 400) {
-    //     // mainContent.style.display = 'none';
-    //     warningMessage.style.display = 'block';
-    // } else {
-    //     // mainContent.style.display = 'block';
-    //     warningMessage.style.display = 'none';
+
+    // if(window.innerWidth > 1237){
+    //     b.style.marginLeft = '7.5rem';
     // }
+
+
+    if (window.innerWidth < 606) {
+        if(grabber){
+            grabber.style.width = '90%';
+        }
+        if(input){
+            input.style.width = '60vw';
+        }
+    }
+    if(window.innerWidth < 536){
+        if(input){
+            input.style.width = '80vw';
+        }
+    } 
     if(window.innerWidth < 450){
         if(dropdown){
             dropdown.style.display = 'none';

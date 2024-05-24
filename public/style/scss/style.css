@@ -249,7 +249,7 @@ input[type=color]:focus,
   color: rgba(0, 0, 0, 0.742);
 }
 .response .demoItem .b {
-  margin-left: 7.5rem;
+  margin-left: 5.5rem !important;
 }
 .response .demoItem .cpyItem {
   width: 250px;
