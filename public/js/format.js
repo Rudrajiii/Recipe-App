@@ -105,4 +105,62 @@ if (toastTrigger) {
 }
 
 
+function checkWindowSize(){
+    const response = document.querySelector('.response');
+    const demoItem = document.querySelector('.demoItem');
+    const main = document.querySelector('.main');
+    const feedback = document.querySelector('.feedback');
+    const dropdown = document.querySelector('.dropdown');
+    const mainContent = document.getElementById('main-content');
+    const warningMessage = document.getElementById('warning-message');
+    const name_h = document.getElementById('name-h');
+    const botu = document.getElementById('botu');
+    const input = document.getElementById('input');
+    const btn = document.getElementById('btn');
+    const h2ka = document.getElementById('h2ka');
+    const h2kaa = document.getElementById('h2kaa');
 
+    // if (window.innerWidth < 400) {
+    //     // mainContent.style.display = 'none';
+    //     warningMessage.style.display = 'block';
+    // } else {
+    //     // mainContent.style.display = 'block';
+    //     warningMessage.style.display = 'none';
+    // }
+    if(window.innerWidth < 450){
+        if(dropdown){
+            dropdown.style.display = 'none';
+        }
+    }
+    if(window.innerWidth < 490){
+        if(name_h){
+            name_h.style.display = 'none';
+        }
+        if(botu){
+            botu.style.fontSize = '1rem';
+        }
+        if(input){
+            input.style.width = '70vw';
+            input.style.height = '7vh';
+            input.style.display = 'flex';
+            input.style.alignItems = 'center';
+            input.style.justifyContent = 'center';
+            input.style.justifyContent = 'center';
+        }
+        if(btn){
+            btn.style.width = '45px';
+            btn.style.aspectRatio = '1/1';
+            btn.style.borderRadius = '50%'
+        }
+        if(h2ka){
+            h2ka.style.fontSize = '1rem';
+        }
+        if(h2kaa){
+            h2kaa.style.fontSize = '1rem';
+        }
+    }
+    
+}
+
+window.addEventListener('resize', checkWindowSize);
+window.addEventListener('load', checkWindowSize);

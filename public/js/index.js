@@ -23,11 +23,7 @@ document.getElementById('btn').addEventListener('click', async () => {
 
         // Fetch data from API with user input as prompt
 
-        const response = await fetch(`/api?prompt=${encodeURIComponent(userInput)}` , {
-            headers: {
-                'Cache-Control': 'no-cache, no-store, must-revalidate', // Force the browser not to cache the response
-            }
-        });
+        const response = await fetch(`/api?prompt=${encodeURIComponent(userInput)}`);
 
         // End time after receiving the response
         const endTime = performance.now();
@@ -56,13 +52,15 @@ document.getElementById('btn').addEventListener('click', async () => {
         });
 
         document.getElementById('input').value = '';
+        console.log(delayTime / 60);
         
     } catch (error) {
 
         console.error('There was a problem with the fetch operation:', error);
 
     } finally{
-        hideLoadingAnimation();
+        hideLoadingAnimation()
+        
     }
 
 });
