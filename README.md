@@ -75,7 +75,7 @@ GROQ_WITH_NODE/
 ## Features
 
 - **User Authentication**: Powered by Passport.js, ensuring secure and smooth user login and registration.
-- **User Dashboard**: Clean and simple UI where users can input prompts and get quick recipe suggestions using the incredibly fast Groq API (812 tokens/sec!).
+- **User Dashboard**: Clean and simple UI where users can input prompts and get quick recipe suggestions using the incredibly fast Groq API (629 tokens/sec!).
 - **History Section**: Stores all user prompts in our MongoDB collection for easy reference and inspiration.
 - **Feedback Support**: Users can provide feedback on their experience, with a toast notification confirming submission.
 - **Profile Management**: Basic CRUD operations for user profiles, with flash messages for successful and error notifications.
