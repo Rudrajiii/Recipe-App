@@ -33,7 +33,12 @@ The core idea behind Recipe.in is to generate delicious recipes with just one si
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [](#OurUI)
+- First Look ⚡
+- ![Screenshot 2024-02-16 220310](https://github.com/Rudrajiii/Recipe-App/blob/main/public/images/uploads/WhatsApp%20Image%202024-05-28%20at%2010.09.37_7c0849c7.jpg?raw=true)
+- Main Dashboard ⭐
+- ![Screenshot 2024-02-16 220310](https://github.com/Rudrajiii/Recipe-App/blob/main/public/images/uploads/WhatsApp%20Image%202024-05-28%20at%2010.09.36_b46febd5.jpg?raw=true)
+- Response Generation ✅
+- ![Screenshot 2024-02-16 220310](https://github.com/Rudrajiii/Recipe-App/blob/main/public/images/uploads/WhatsApp%20Image%202024-05-28%20at%2010.09.36_796b9fcf.jpg?raw=true)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
@@ -46,6 +51,23 @@ The core idea behind Recipe.in is to generate delicious recipes with just one si
 ## Introduction
 
 Recipe.in is an innovative application designed to generate delicious recipes with just one simple prompt. It's designed to make cooking fun and easy for everyone, from beginners to seasoned chefs.
+
+## File Structure 
+GROQ_WITH_NODE/
+├── model /
+│├── SearchHistory.js
+│└── user.js
+│└── userFeedbacks.js
+├── public/
+│ ├── images
+│ └── styles /
+│ └── javascripts /
+├── views/
+├── server.js
+└── app.js
+├── env.js
+└── package.json
+└── README.md
 
 ## Features
 
