@@ -105,13 +105,13 @@ Follow these steps to set up the project locally:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/your-repo-name.git
+git clone https://github.com/Rudrajiii/Recipe-App
 
 # Navigate to the project directory
-cd your-repo-name
+cd Recipe-App
 
 # Install dependencies
-npm install
+npm install -y
 
 # (Optional) Set up environment variables
 cp .env.example .env
