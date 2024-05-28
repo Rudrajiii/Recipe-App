@@ -330,6 +330,7 @@ footer h2 a {
   }
   .response #result {
     min-height: 100vh !important;
+    width: 92vw !important;
   }
   .response #result h4 {
     top: 31%;
