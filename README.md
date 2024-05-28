@@ -52,22 +52,25 @@ The core idea behind Recipe.in is to generate delicious recipes with just one si
 
 Recipe.in is an innovative application designed to generate delicious recipes with just one simple prompt. It's designed to make cooking fun and easy for everyone, from beginners to seasoned chefs.
 
-## File Structure 
+## Project Structure
+
 GROQ_WITH_NODE/
-├── model /
-│├── SearchHistory.js
-│└── user.js
-│└── userFeedbacks.js
+├── model/
+│ ├── SearchHistory.js
+│ ├── user.js
+│ └── userFeedbacks.js
 ├── public/
-│ ├── images
-│ └── styles /
-│ └── javascripts /
+│ ├── images/
+│ ├── styles/
+│ └── javascripts/
 ├── views/
 ├── server.js
-└── app.js
+├── app.js
 ├── env.js
-└── package.json
+├── package.json
 └── README.md
+
+
 
 ## Features
 
