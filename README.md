@@ -33,11 +33,11 @@ The core idea behind Recipe.in is to generate delicious recipes with just one si
 ## Table of Contents
 
 - [Introduction](#introduction)
+- [https://pbs.twimg.com/media/GORDG08XQAAzIE_?format=jpg&name=large](#OurUI)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Screenshots](#screenshots)
 - [API Endpoints](#api-endpoints)
 - [Contributing](#contributing)
 - [License](#license)
