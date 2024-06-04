@@ -33,7 +33,12 @@ The core idea behind Recipe.in is to generate delicious recipes with just one si
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [](#OurUI)
+- First Look ⚡
+- ![Screenshot 2024-02-16 220310](https://github.com/Rudrajiii/Recipe-App/blob/main/public/images/uploads/WhatsApp%20Image%202024-05-28%20at%2010.09.37_7c0849c7.jpg?raw=true)
+- Main Dashboard ⭐
+- ![Screenshot 2024-02-16 220310](https://github.com/Rudrajiii/Recipe-App/blob/main/public/images/uploads/WhatsApp%20Image%202024-05-28%20at%2010.09.36_b46febd5.jpg?raw=true)
+- Response Generation ✅
+- ![Screenshot 2024-02-16 220310](https://github.com/Rudrajiii/Recipe-App/blob/main/public/images/uploads/WhatsApp%20Image%202024-05-28%20at%2010.09.36_796b9fcf.jpg?raw=true)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
@@ -47,10 +52,30 @@ The core idea behind Recipe.in is to generate delicious recipes with just one si
 
 Recipe.in is an innovative application designed to generate delicious recipes with just one simple prompt. It's designed to make cooking fun and easy for everyone, from beginners to seasoned chefs.
 
+## Project Structure
+
+GROQ_WITH_NODE/
+├── model/
+│ ├── SearchHistory.js
+│ ├── user.js
+│ └── userFeedbacks.js
+├── public/
+│ ├── images/
+│ ├── styles/
+│ └── javascripts/
+├── views/
+├── server.js
+├── app.js
+├── env.js
+├── package.json
+└── README.md
+
+
+
 ## Features
 
 - **User Authentication**: Powered by Passport.js, ensuring secure and smooth user login and registration.
-- **User Dashboard**: Clean and simple UI where users can input prompts and get quick recipe suggestions using the incredibly fast Groq API (812 tokens/sec!).
+- **User Dashboard**: Clean and simple UI where users can input prompts and get quick recipe suggestions using the incredibly fast Groq API (629 tokens/sec!).
 - **History Section**: Stores all user prompts in our MongoDB collection for easy reference and inspiration.
 - **Feedback Support**: Users can provide feedback on their experience, with a toast notification confirming submission.
 - **Profile Management**: Basic CRUD operations for user profiles, with flash messages for successful and error notifications.
@@ -80,13 +105,13 @@ Follow these steps to set up the project locally:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/your-repo-name.git
+git clone https://github.com/Rudrajiii/Recipe-App
 
 # Navigate to the project directory
-cd your-repo-name
+cd Recipe-App
 
 # Install dependencies
-npm install
+npm install -y
 
 # (Optional) Set up environment variables
 cp .env.example .env
