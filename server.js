@@ -15,6 +15,7 @@ const multer = require("multer");
 const nodemailer = require("nodemailer");
 const {EMAIL , PASSWORD} = require("./env.js");
 const Mailgen = require("mailgen");
+const fs = require("fs");
 const userFeedbacks = require("./model/userFeedbacks.js");
 
 passport.use(new localStrategy(User.authenticate()));
@@ -229,7 +230,7 @@ function sendRegistrationEmail(userEmail , userName) {
 
   let response = {
     body: {
-      name: "From Vicky",
+      name: "From Recipie.in",
       intro: `Hey ${userName},\n\nWelcome to Recipie.in! Here, you can discover a world of delicious recipes with just a single prompt.`,
       table: {
         data: [
@@ -289,6 +290,17 @@ server.post("/profile/update", isLoggedIn, upload.single("profilePic"), async fu
   try {
     // Find the user by ID
     const user = await User.findById(userId);
+
+    // Delete old profile picture if a new one is uploaded
+    if (req.file && user.profilePic && user.profilePic !== "../images/uploads/default.jpg") {
+      fs.unlink(user.profilePic, (err) => {
+        if (err) {
+          console.error("Error deleting old profile picture:", err);
+        } else {
+          console.log("Old profile picture deleted successfully.");
+        }
+      });
+    }
 
     // Update email if provided
     user.email = req.body.email || user.email;

@@ -104,6 +104,17 @@ if (toastTrigger) {
   })
 }
 
+const setting = document.querySelector(".setting");
+let touch = 1;
+setting.addEventListener("click", () => {
+    if(touch){
+        setting.style.transform = "rotate(85deg)";
+        touch = 0;
+    }else{
+        setting.style.transform = "rotate(75deg)";
+        touch = 1;
+    }
+})
 
 function checkWindowSize(){
     const response = document.querySelector('.response');
