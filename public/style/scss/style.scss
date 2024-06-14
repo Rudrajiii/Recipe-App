@@ -172,13 +172,14 @@ input[type="color"]:focus,
             width: 50vw;
             height: 8vh;
             border-radius: 2rem;
-            padding: 15px 20px;
+            padding: 12px 20px;
+            font-size: 1.3rem;
             border: none;
             outline: none !important;
             overflow: hidden;
         }
         .userProfile{
-            width: 40px;
+            width: 54px;
             aspect-ratio: 1/1;
             border-radius: 50%;
             mix-blend-mode: multiply;
