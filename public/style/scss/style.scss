@@ -172,7 +172,7 @@ input[type="color"]:focus,
             width: 50vw;
             height: 8vh;
             border-radius: 2rem;
-            padding: 10px 20px;
+            padding: 15px 20px;
             border: none;
             outline: none !important;
             overflow: hidden;
@@ -252,15 +252,16 @@ input[type="color"]:focus,
             
         }
         .cpyItem{
-            width: 250px;
+            width: 270px;
             aspect-ratio: 1/.6;
             border-radius: 0.8rem;
-            padding: 1rem;
+            padding: 1.3rem;
             position: relative;
             // box-shadow: #e0e6ecce 0px 1px 1px 0px inset, #e0e6ec90 0px 50px 100px -20px, #e0e6ec86 0px 30px 60px -30px;
             border-radius: 10px 20px; 
             background: #E0E6EC;
             border: 1px solid;
+            font-size: 1.2rem;
             font-family: "Kalam", cursive;
             font-weight: 400;
             font-style: normal;

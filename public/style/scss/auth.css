@@ -48,8 +48,8 @@ body, html {
   font-style: normal;
 }
 .rightContainerPart .formWrapper {
-  width: 30vw;
-  height: 90vh;
+  width: 28vw;
+  height: 80vh;
   border-radius: 0.7rem;
   display: grid;
   place-items: center;
@@ -66,11 +66,11 @@ body, html {
 .rightContainerPart .formWrapper #socials a {
   text-decoration: none;
   color: #000000;
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 .rightContainerPart .formWrapper .form {
   width: 100%;
-  height: 70vh;
+  height: 60vh;
 }
 .rightContainerPart .formWrapper #reg-form {
   display: flex;
@@ -78,7 +78,7 @@ body, html {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 70vh;
+  height: 60vh;
   gap: 2vh;
 }
 .rightContainerPart .formWrapper #reg-form .head {
@@ -89,12 +89,13 @@ body, html {
   font-family: "Kalam", cursive;
   font-weight: 400;
   font-style: normal;
+  font-size: 2rem;
 }
 .rightContainerPart .formWrapper #reg-form .head h3 {
   color: #000000;
   font-family: "Kalam", cursive;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-style: normal;
 }
 .rightContainerPart .formWrapper #reg-form .head h3 span {
@@ -102,29 +103,30 @@ body, html {
 }
 .rightContainerPart .formWrapper #reg-form #profilePic {
   margin-left: 1.5rem;
-  font-size: 0.87rem;
+  font-size: 1.05rem;
   border: none;
-  border-radius: 0.7rem;
+  border-radius: 1rem;
   padding: 0.3rem;
   font-family: "Kalam", cursive;
   font-weight: 400;
   font-style: normal;
 }
 .rightContainerPart .formWrapper #reg-form #password, .rightContainerPart .formWrapper #reg-form #email, .rightContainerPart .formWrapper #reg-form #username {
-  width: 220px;
+  width: 270px;
   border-radius: 0.4rem;
   border: none;
-  padding: 0.3rem;
+  padding: 0.6rem;
   background: #fff;
   font-family: "Kalam", cursive;
   font-weight: 400;
   font-style: normal;
 }
 .rightContainerPart .formWrapper #reg-form .btn {
-  margin-right: 6.2rem;
+  margin-right: 8.3rem;
   background: #0287FF;
   border: none;
   color: white;
+  padding: 0.7rem 1.2rem;
   border-radius: 0.7rem;
   font-family: "Kalam", cursive;
   font-weight: 400;

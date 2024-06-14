@@ -35,8 +35,8 @@ body , html{
         font-style: normal;
     }
     .formWrapper{
-        width: 30vw;
-        height: 90vh;
+        width: 28vw;
+        height: 80vh;
         border-radius: .7rem;
         display: grid;
         place-items: center;
@@ -51,12 +51,12 @@ body , html{
             a{
                 text-decoration: none;
                 color: #000000;
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
         }
         .form{
             width: 100%;
-            height: 70vh;
+            height: 60vh;
         }
         #reg-form{
             display: flex;
@@ -64,7 +64,7 @@ body , html{
             align-items: center;
             justify-content: center;
             width: 100%;
-            height: 70vh;
+            height: 60vh;
             gap: 2vh;
             .head{
                 text-align: center;
@@ -73,12 +73,13 @@ body , html{
                     font-family: "Kalam", cursive;
                     font-weight: 400;
                     font-style: normal;
+                    font-size: 2rem;
                 }
                 h3{
                     color: #000000;
                     font-family: "Kalam", cursive;
                     font-weight: 700;
-                    font-size: 2rem;
+                    font-size: 2.2rem;
                     font-style: normal;
                     span{
                         color: #0287FF;
@@ -88,29 +89,30 @@ body , html{
             }
             #profilePic{
                 margin-left: 1.5rem;
-                font-size: .87rem;
+                font-size: 1.05rem;
                 border: none;
-                border-radius: 0.7rem;
+                border-radius: 1rem;
                 padding: .3rem;
                 font-family: "Kalam", cursive;
                 font-weight: 400;
                 font-style: normal;
             }
             #password , #email , #username{
-                width: 220px;
+                width: 270px;
                 border-radius: .4rem;
                 border: none;
-                padding: .3rem;
+                padding: .6rem;
                 background: #fff;
                 font-family: "Kalam", cursive;
                 font-weight: 400;
                 font-style: normal;
             }
             .btn{
-                margin-right: 6.2rem;
+                margin-right: 8.3rem;
                 background: #0287FF;
                 border: none;
                 color: white;
+                padding: .7rem 1.2rem;
                 border-radius: .7rem;
                 font-family: "Kalam", cursive;
                 font-weight: 400;
