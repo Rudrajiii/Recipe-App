@@ -183,13 +183,15 @@ input[type="color"]:focus,
             aspect-ratio: 1/1;
             border-radius: 50%;
             mix-blend-mode: multiply;
+            filter: drop-shadow(2px 3px 5px rgba(81, 81, 81, 0.523));
         }
         #btn{
             border: none !important;
             border-radius: 50%;
-            width: 45px;
+            width: 50px;
             aspect-ratio: 1/1;
             background: white;
+            filter: drop-shadow(2px 3px 5px rgba(81, 81, 81, 0.523));
         }
     }
     
@@ -253,7 +255,7 @@ input[type="color"]:focus,
             
         }
         .cpyItem{
-            width: 270px;
+            width: 300px;
             aspect-ratio: 1/.6;
             border-radius: 0.8rem;
             padding: 1.3rem;

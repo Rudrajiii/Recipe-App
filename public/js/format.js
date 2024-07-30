@@ -42,10 +42,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.querySelectorAll('.copy').forEach(button => {
         button.addEventListener('click', () => {
             const parentDiv = button.parentElement;
-            // Get all text content of the parent div except the button text
-            const textToCopy = Array.from(parentDiv.childNodes)
-                .filter(node => node.nodeType === Node.TEXT_NODE)
-                .map(node => node.textContent.trim())
+            // Get all text content of <p> tags within the parent div
+            const textToCopy = Array.from(parentDiv.querySelectorAll('p'))
+                .map(pTag => pTag.textContent.trim())
                 .join(' ');
 
             navigator.clipboard.writeText(textToCopy).then(() => {
