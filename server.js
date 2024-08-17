@@ -305,10 +305,16 @@ server.post("/profile/update", isLoggedIn, upload.single("profilePic"), async fu
     // Update email if provided
     user.email = req.body.email || user.email;
     user.username = req.body.username || user.username;
+    user.password = req.body.password || user.password;
 
     // Update profile picture if a new one is uploaded
     if (req.file) {
       user.profilePic = req.file.path;
+    }
+
+    // Update password if a new one is provided
+    if (req.body.password) {
+      await user.setPassword(req.body.password); // Use setPassword to properly hash and salt the new password
     }
 
     // Save the updated user object
