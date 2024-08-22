@@ -154,10 +154,9 @@ input[type="color"]:focus,
         font-family: "Kalam", cursive;
         font-weight: 400;
         font-style: normal;
+        margin-left: 1.6rem;
         align-items: center;
-        .fa-comment-dots{
-            font-size: 1.4rem;
-        }
+        
         
     }
     .grabber{
@@ -168,6 +167,7 @@ input[type="color"]:focus,
         margin-left: 13rem;
         align-items: center;
         justify-content: center;
+        
         #input{
             width: 50vw;
             height: 8vh;

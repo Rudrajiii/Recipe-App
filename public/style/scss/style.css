@@ -161,10 +161,8 @@ input[type=color]:focus,
   font-family: "Kalam", cursive;
   font-weight: 400;
   font-style: normal;
+  margin-left: 1.6rem;
   align-items: center;
-}
-.main .feedback .fa-comment-dots {
-  font-size: 1.4rem;
 }
 .main .grabber {
   width: 70%;
