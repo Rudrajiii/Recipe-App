@@ -23,17 +23,6 @@
   <body>
     <!-- Login Page Code -->
     <div class="loginForm">
-      <div id="socials">
-        <a href="">
-          <i class="fa-brands fa-linkedin"></i>
-        </a>
-        <a href="">
-          <i class="fa-brands fa-github"></i>
-        </a>
-        <a href="">
-          <i class="fa-brands fa-x-twitter"></i>
-        </a>
-      </div>
       <h3>Welcome Back!!</h3>
       <h5>Login into your account</h5>
       <% if(errorFlash.length > 0) { %>
@@ -45,14 +34,14 @@
           type="text"
           autocomplete="off"
           id="username"
-          placeholder="Username"
+          placeholder="Enter Your Username"
         />
         <input
           name="password"
           type="password"
           autocomplete="off"
           id="password"
-          placeholder="Password"
+          placeholder="Enter Your Password"
         />
         <input class="btn" type="submit" value="Submit Form" />
       </form>

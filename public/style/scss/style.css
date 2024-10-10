@@ -376,11 +376,14 @@ footer h2 a {
     width: 100%;
   }
 }
-@media (max-width: 584) {
+@media (max-width: 584px) {
   .response #result h4 {
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 1rem;
+  }
+  .main .grabber #input {
+    font-size: 1.1rem !important;
   }
 }/*# sourceMappingURL=style.css.map */

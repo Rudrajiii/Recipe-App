@@ -393,14 +393,16 @@ footer{
                 }
         }
     }
+    
 }
 @media (max-width: 611){
     .grabber{
         width: 100%;
         
+        
     }
 }
-@media (max-width: 584){
+@media (max-width: 584px){
     .response{        
         #result{ 
             h4{
@@ -411,4 +413,12 @@ footer{
             }
         }
     }
+    .main{
+        .grabber{
+            #input{
+                font-size: 1.1rem !important;
+            }
+        }
+    }
+    
 }

@@ -15,26 +15,20 @@
     <!-- <a href="/profile/:userId/">Update Info</a> -->
       <div class="rightContainerPart">
         <div class="formWrapper">
-            <div id="socials">
-                <a href="">
-                    <i class="fa-brands fa-linkedin"></i>
-                </a>
-                <a href="">
-                    <i class="fa-brands fa-github"></i>
-                </a>
-                <a href="">
-                    <i class="fa-brands fa-x-twitter"></i>
-                </a>
-            </div>
             <div class="form">
                 <form id="reg-form" action="/profile/update" method="post" enctype="multipart/form-data">
                     <div class="head">
-                        <h3>Welcome to <span>Recipie.in</span></h3>
+                        <h3>Welc🍔me to <span>Recipie.in</span></h3>
                         <h5>Edit Your Information</h5>
                     </div>
                         <input name="username" type="text" autocomplete="off" id="username" placeholder="Username" value="<%= userData.username %>"/>
                         <input name="email" type="email" autocomplete="off" id="email" placeholder="Email" value="<%= userData.email %>"/>
-                        <input name="password"  type="password" autocomplete="off" id="password" placeholder="Password" value="<%= userData.password %>"/>
+                        <div class="input-group">
+                            <input name="password" type="password" autocomplete="off" id="password" placeholder="Password" value="<%= userData.password %>" required />
+                            <button type="button" class="btn-outline-secondary" id="toggle-password">
+                                <span id="eye-icon" class="eye-icon">🙈</span>
+                            </button>
+                        </div>
                         <!-- <input name="profilePic" type="file" id="profilePic" accept="image/*"> -->
                         <input  type="file" id="profilePic" name="profilePic">
                         <input class="btn" type="submit" value="Update Info " />
