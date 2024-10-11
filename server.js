@@ -81,11 +81,12 @@ server.get("/index", isLoggedIn, async function (req, res) {
   console.log(userData);
   let modifiedImagePath;
   if (userData.profilePic) {
-    modifiedImagePath = userData.profilePic.replace("public\\", "../");
+    // Replace only on Windows (backslashes) or use a relative path directly
+    modifiedImagePath = userData.profilePic.replace(/\\/g, '/').replace('public/', '');
   } else {
-    // If no profile picture is uploaded, use a default image path
-    modifiedImagePath = "../images/uploads/default.jpg";
+    modifiedImagePath = "/images/uploads/default.jpg";
   }
+
   // const modifiedImagePath = userData.profilePic.replace('public\\', '../');
 
   res.locals.extractDate = extractDate;
