@@ -341,7 +341,7 @@ server.get("/viewProfile" , isLoggedIn ,async function(req , res){
     profile = "../images/uploads/default.jpg";
 
   }else{
-    profile = user.profilePic.replace("public\\", "../");
+    profile = user.profilePic.replace("public/", "../");
   } 
 
   console.log(user);
