@@ -1,13 +1,15 @@
 {
-  "name": "test",
+  "name": "recipe_app",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "It's basically a Recipe Generation wep app using the LLM Model mixtral-8x7b-32768 Provided by GROQ API✨It's too fast .",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon server.js",
+    "start" : "node server.js",
+    "build" : "npm install"
   },
   "keywords": [],
-  "author": "",
+  "author": "Vicky",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
