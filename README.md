@@ -34,7 +34,7 @@ The core idea behind Recipe.in is to generate delicious recipes with just one si
 
 - [Introduction](#introduction)
 - First Look ⚡
-- ![Screenshot 2024-02-16 220310](https://github.com/Rudrajiii/Recipe-App/blob/main/public/images/uploads/WhatsApp%20Image%202024-05-28%20at%2010.09.37_7c0849c7.jpg?raw=true)
+- ![Screenshot 2024-02-16 220310](https://github.com/Rudrajiii/Recipe-App/blob/main/public/images/uploads/Screenshot%202024-10-10%20173042.png?raw=true)
 - Main Dashboard ⭐
 - ![Screenshot 2024-02-16 220310](https://github.com/Rudrajiii/Recipe-App/blob/main/public/images/uploads/WhatsApp%20Image%202024-05-28%20at%2010.09.36_b46febd5.jpg?raw=true)
 - Response Generation ✅
