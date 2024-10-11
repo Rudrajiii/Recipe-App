@@ -1,7 +1,7 @@
-.vscode
-node_modules
-env.js
-.env
+/.vscode
+/node_modules
+/env.js
+/.env
 
 
 

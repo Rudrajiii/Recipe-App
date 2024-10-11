@@ -135,9 +135,10 @@ input[type=color]:focus,
 }
 
 .col-form-label, #exampleModalLabel, #offcanvasRightLabel, .d-inline-flex {
-  font-family: "Kalam", cursive !important;
-  font-weight: 400 !important;
+  font-weight: 800 !important;
+  color: rgb(88, 87, 87);
   font-style: normal !important;
+  margin-left: 1.3rem;
 }
 
 #hist {
@@ -233,6 +234,7 @@ input[type=color]:focus,
   border: none !important;
   font-family: "Kalam", cursive;
   font-weight: 400;
+  font-size: 20px;
   font-style: normal;
 }
 .response .demoItem {
@@ -294,9 +296,17 @@ footer h2 a {
   text-decoration: none;
 }
 
+@media (max-width: 1300px) {
+  .main .grabber #input {
+    padding: 9px 19px;
+  }
+}
 @media (max-width: 1237px) {
   .main .grabber {
-    margin-left: 8.5rem;
+    margin-left: 6rem;
+  }
+  .main .grabber #input {
+    padding: 9px 19px;
   }
   .demoItem {
     width: inherit;
@@ -383,7 +393,14 @@ footer h2 a {
     transform: translate(-50%, -50%);
     font-size: 1rem;
   }
+}
+@media (max-width: 489px) {
+  .main .grabber img {
+    width: 45px !important;
+    aspect-ratio: 1/1;
+  }
   .main .grabber #input {
     font-size: 1.1rem !important;
+    padding: 12px 19px;
   }
 }/*# sourceMappingURL=style.css.map */

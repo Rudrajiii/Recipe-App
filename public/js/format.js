@@ -1,6 +1,6 @@
 
 
-//*Date Formating
+// *Date Formating
 function extractDate(timestampString) {
     const regex = /\b(\w{3}\s\w{3}\s\d{1,2}\s\d{4})\b/;
     
@@ -9,28 +9,49 @@ function extractDate(timestampString) {
     return match ? match[1] : null;
 }
 //* JavaScript for copying text to clipboard
- const copyButtons = document.querySelectorAll('.copy-button');
-    
-copyButtons.forEach(button => {
-     button.addEventListener('click', () => {
-         const index = button.getAttribute('data-index');
-         const historyItem = document.getElementById(`history${index}`);
-         const textToCopy = historyItem.innerText;
-         const textarea = document.createElement('textarea');
-         textarea.value = textToCopy;
-         textarea.setAttribute('readonly', '');
-         textarea.style.position = 'absolute';
-         textarea.style.left = '-9999px';
-         document.body.appendChild(textarea);
-         textarea.select();
-         document.execCommand('copy');
-         document.body.removeChild(textarea);
-         button.textContent = 'Copied!';
-         setTimeout(() => {
-             button.textContent = 'Copy';
-         }, 2000);
-     });
- });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const copyButtons = document.querySelectorAll('.copy');
+  
+    copyButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Find the parent .cpyItem element
+        const cpyItem = button.closest('.cpyItem');
+        
+        if (cpyItem) {
+          // Clone the .cpyItem element
+          const tempDiv = cpyItem.cloneNode(true);
+          
+          // Remove the button from the cloned content
+          const buttonToRemove = tempDiv.querySelector('button');
+          if (buttonToRemove) {
+            tempDiv.removeChild(buttonToRemove);
+          }
+          
+          // Get the text content, excluding the button
+          const textToCopy = tempDiv.textContent.trim();
+          
+          console.log('Text to copy:', textToCopy);
+          
+          // Copy the text to clipboard
+          navigator.clipboard.writeText(textToCopy).then(() => {
+            console.log('Text copied to clipboard');
+            
+            // Update button text to show "Copied!"
+            button.textContent = 'Copied!';
+            setTimeout(() => {
+              button.textContent = 'Copy';
+            }, 2000);
+          }).catch(err => {
+            console.error('Failed to copy text: ', err);
+          });
+        } else {
+          console.error('No .cpyItem parent found for this button');
+        }
+      });
+    });
+  });
+
 
 
 //**copying the div content

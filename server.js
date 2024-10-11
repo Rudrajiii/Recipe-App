@@ -17,7 +17,7 @@ const {EMAIL , PASSWORD} = require("./env.js");
 const Mailgen = require("mailgen");
 const fs = require("fs");
 const userFeedbacks = require("./model/userFeedbacks.js");
-
+const PORT = process.env.PORT || 3000;
 passport.use(new localStrategy(User.authenticate()));
 
 function extractDate(timestampString) {
@@ -369,7 +369,7 @@ server.post('/submit-feedback', async (req, res) => {
 
 
 //server listening on port 8080
-server.listen(8080, () => {
+server.listen(PORT, () => {
   console.log("listening on port 8080");
 });
 

@@ -30,7 +30,8 @@
                         <input name="email" type="email" autocomplete="off" id="email" placeholder="Email" required pattern="(?=.{1,64}@.{1,253}$)(?!.*--)[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
                         title="Please enter a valid email address."/>
                         <div class="input-group">
-                            <input name="password" type="password" autocomplete="off" id="password" placeholder="Password" required />
+                            <input name="password" type="password" autocomplete="off" id="password" placeholder="Password" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}" 
+                            title="Password must be at least 6 characters long, contain at least one uppercase letter, one lowercase letter, one digit, and one special character."/>
                             <button type="button" class="btn-outline-secondary" id="toggle-password">
                                 <span id="eye-icon" class="eye-icon">🙈</span>
                             </button>

@@ -6,6 +6,10 @@ const groq = new Groq({
     apiKey: process.env.GROQ_API_KEY
 });
 async function main(userPrompt) {
+    //Bug fixded for empty input parameter;
+    if(!userPrompt){
+        return "Please enter a query To generate something tasty🍔🍟"
+    }
     //system prompt for this llm model
     let mainPrompt = `Remember you are a recipe generator model , Remember you have to reply those all questions or queries releated to food and recipies even if someone ask about hy how are you just say hey i am here to help u suggest and give recipes of great foods and stuff like that and just reject all that questions which are not releated to food and recipes Remember deny all the answers of the questions which is not releated to the food and recipes just discard that answers and tell them that you are an recipe generator model , so here the prompt ${userPrompt}`;
 

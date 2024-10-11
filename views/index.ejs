@@ -64,7 +64,7 @@
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasRightLabel" style="font-weight: 600; font-size: 1.7rem;">Search History⏱️</h5>
+      <h5 class="offcanvas-title" id="offcanvasRightLabel" style="font-weight: 600; font-size: 1.7rem;">Search History⌛</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
@@ -100,33 +100,33 @@
       font-style: normal;">Demo Prompts 📃</h2></h5>
     <button style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-  <div class="offcanvas-body">
-    <div class="cpyItem">⭐ Generate a recipe for tasty Chicken Biriyani In Indian Style. 
-      <button style="border-radius: .5rem ;border: none; padding: .3rem .8rem" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
+  <div class="offcanvas-body" >
+    <div class="cpyItem" id="history1">⭐ Generate a recipe for tasty Chicken Biriyani In Indian Style1. 
+      <button data-index="1" style="border-radius: .5rem ;border: none; padding: .3rem .8rem" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
   </div>
   <hr>
-  <div class="cpyItem b">⭐ Generate a recipe for delicious Japanese Food also tell me the steps of cooking. 
-    <button style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
+  <div class="cpyItem b" id="history2">⭐ Generate a recipe for delicious Japanese Food also tell me the steps of cooking. 
+    <button data-index="2"   style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
   </div>
   <hr>
-<div class="cpyItem">⭐ Give a recipe for a Tea and also mention all the ingredients used in the process. 
-    <button style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
+<div class="cpyItem" id="history3">⭐ Give a recipe for a Tea and also mention all the ingredients used in the process. 
+    <button  data-index="3"  style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
   </div>
   <hr>
-<div class="cpyItem b">⭐ Generate a recipe of a famous Indian dish called "Khichuri" 
-    <button style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
+<div class="cpyItem b" id="history4">⭐ Generate a recipe of a famous Indian dish called "Khichuri" 
+    <button  data-index="4"  style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
   </div>
   <hr>
-<div class="cpyItem">⭐ Name Some famous dishes of Africa !!
-    <button style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
+<div class="cpyItem" id="history5">⭐ Name Some famous dishes of Africa !!
+    <button  data-index="5"  style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
   </div>
   <hr>
-<div class="cpyItem b">⭐ Tell me the step by step process to make a Doracake.
-    <button style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
+<div class="cpyItem b" id="history6">⭐ Tell me the step by step process to make a Doracake.
+    <button  data-index="6"  style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
   </div>
   <hr>
-<div class="cpyItem ">⭐ Tell me how I can make a tasty flavourful chocolate ice cream.
-    <button style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
+<div class="cpyItem " id="history7">⭐ Tell me how I can make a tasty flavourful chocolate ice cream.
+    <button  data-index="7"  style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
   </div>
   </div>
 </div>

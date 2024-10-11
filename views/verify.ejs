@@ -26,7 +26,8 @@
       <h3>Welcome Back!!</h3>
       <h5>Login into your account</h5>
       <% if(errorFlash.length > 0) { %>
-      <p style="color: red; font-size: 20px; padding: 0"><%= errorFlash %></p>
+        <!-- Bug fixed in fontsize -->
+      <p style="color: red; font-size: 15px; padding: 0"><%= errorFlash %></p>
       <% }%>
       <form id="reg-form" action="/login" method="post">
         <input

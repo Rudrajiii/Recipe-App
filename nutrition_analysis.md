@@ -1,28 +1,51 @@
 # Nutrition Analysis Prompt
 
-I'd be happy to help, but I need to know what dish you are referring to in order to provide the nutritional information and create a nutritionist chart. Could you please provide more details about the dish?
+I'm happy to hear that the dish is working out well! To provide the nutritional information and a nutritionist's chart, I'll need to know the exact ingredients and quantities used in the dish. However, I can give you an example of how to calculate and present the nutritional information and create a nutritionist's chart for a hypothetical dish: Chicken Stir-fry with Vegetables.
 
-In general, a nutritionist chart would include the following information for a particular dish:
+Ingredients:
 
-* Serving size
-* Calories
-* Protein (in grams and as a percentage of the daily value)
-* Fat (in grams and as a percentage of the daily value)
-* Carbohydrates (in grams and as a percentage of the daily value)
-* Sugar (in grams)
-* Fiber (in grams)
-* Sodium (in milligrams and as a percentage of the daily value)
+* 400g chicken breast ( boneless, skinless)
+* 2 cups broccoli florets
+* 1 red bell pepper, sliced
+* 1 yellow bell pepper, sliced
+* 1 medium onion, sliced
+* 2 cloves garlic, minced
+* 1 tbsp ginger, minced
+* 2 tbsp vegetable oil
+* 3 tbsp low-sodium soy sauce
+* 1 tbsp oyster sauce
+* 1 tbsp sesame oil
+* 1 tbsp cornstarch (mixed with 2 tbsp water)
 
-Here is an example of a nutritionist chart for a spinach and feta cheese omelette:
+Nutritional Information per serving (approx. 250g):
 
-Serving size: 1 omelette
-Calories: 250
-Protein: 18 grams (36% of the daily value)
-Fat: 18 grams (28% of the daily value)
-Carbohydrates: 6 grams (2% of the daily value)
-Sugar: 1 gram
-Fiber: 1 gram
-Sodium: 450 milligrams (19% of the daily value)
+* Calories: 356
+* Protein: 35g (31% of daily value)
+* Fat: 14g (22% of daily value)
+	+ Saturated Fat: 2g (10% of daily value)
+	+ Trans Fat: 0g
+* Carbohydrates: 20g (7% of daily value)
+	+ Dietary Fiber: 4g (16% of daily value)
+	+ Sugar: 6g
+* Sodium: 646mg (27% of daily value)
+* Potassium: 753mg (21% of daily value)
 
-I hope this helps! Let me know if you have any other questions.
+Nutritionist's Chart:
+
+| Nutrient | Amount per Serving | Daily Value % |
+| --- | --- | --- |
+| Calories | 356 | - |
+| Protein | 35g | 31% |
+| Fat | 14g | 22% |
+| - Saturated Fat | 2g | 10% |
+| - Trans Fat | 0g | - |
+| Carbohydrates | 20g | 7% |
+| - Dietary Fiber | 4g | 16% |
+| - Sugar | 6g | - |
+| Sodium | 646mg | 27% |
+| Potassium | 753mg | 21% |
+
+Note: The daily value percentages are based on a 2,000-calorie diet. You may need to adjust the values based on your specific dietary needs.
+
+This chart provides a quick and easy way to see the nutritional content of a serving of the dish. It's important to remember that nutrition information can vary depending on the specific ingredients and quantities used, so it's always a good idea to consult a reliable nutritional database or consult with a registered dietitian for accurate information.
 

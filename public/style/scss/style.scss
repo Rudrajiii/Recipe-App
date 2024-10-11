@@ -9,6 +9,7 @@ h1{
     border: 2px solid black;
     width: 50%;
 }
+
 nav{
     width: 100%;
     // background: red;
@@ -129,9 +130,11 @@ input[type="color"]:focus,
         outline:0px !important;
     }
 .col-form-label , #exampleModalLabel , #offcanvasRightLabel , .d-inline-flex{
-        font-family: "Kalam", cursive !important;
-        font-weight: 400 !important;
+        font-weight: 800 !important;
+        color: rgb(88, 87, 87);
         font-style: normal  !important;
+        margin-left: 1.3rem;
+
 }
 #hist{
     display: flex;
@@ -234,6 +237,7 @@ input[type="color"]:focus,
         border: none !important;
         font-family: "Kalam", cursive;
         font-weight: 400;
+        font-size: 20px;
         font-style: normal;
     }
     .demoItem {
@@ -299,12 +303,24 @@ footer{
         }
     }
 }
+@media (max-width:1300px) {
+    .main{
+        .grabber{
+            #input{
+                padding: 9px 19px;
+            }
+        }
+    }
+}
 
 @media (max-width:1237px){
     .main{
         .grabber{
             // border: 2px solid;
-            margin-left: 8.5rem;
+            margin-left: 6rem;
+            #input{
+                padding: 9px 19px;
+            }
         }
     }
     .demoItem{
@@ -413,12 +429,19 @@ footer{
             }
         }
     }
+}
+@media (max-width: 489px){
     .main{
         .grabber{
+            img{
+                width: 45px !important;
+                aspect-ratio: 1/1;
+            }
             #input{
                 font-size: 1.1rem !important;
+                padding: 12px 19px;
             }
         }
     }
-    
 }
+
