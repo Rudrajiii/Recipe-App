@@ -293,35 +293,23 @@ server.post("/profile/update", isLoggedIn, upload.single("profilePic"), async fu
   try {
     // Find the user by ID
     const user = await User.findById(userId);
-    // Delete old profile picture if it's not the default
-    if (user.profilePic && user.profilePic !== "/images/uploads/default.jpg") {
-      const oldFilePath = path.join(__dirname, 'public', user.profilePic);
-      fs.unlink(oldFilePath, (err) => {
-        if (err) console.error("Error deleting old profile picture:", err);
-        else {
-          console.log("Old profile picture deleted successfully.");
-        }
-      });
-    }
-    // if (req.file && user.profilePic && user.profilePic !== "../images/uploads/default.jpg") {
-    //   fs.unlink(user.profilePic, (err) => {
-    //     if (err) {
-    //       console.error("Error deleting old profile picture:", err);
-    //     } else {
-    //       console.log("Old profile picture deleted successfully.");
-    //     }
-    //   });
-    // }
 
-    // Update email if provided
+    // Update email and username if provided
     user.email = req.body.email || user.email;
     user.username = req.body.username || user.username;
-    user.password = req.body.password || user.password;
 
-    // Update profile picture if a new one is uploaded
+    // Check if a new profile picture is uploaded
     if (req.file) {
+      // Delete old profile picture if it's not the default
+      if (user.profilePic && user.profilePic !== "/images/uploads/default.jpg") {
+        const oldFilePath = path.join(__dirname, 'public', user.profilePic);
+        fs.unlink(oldFilePath, (err) => {
+          if (err) console.error("Error deleting old profile picture:", err);
+          else console.log("Old profile picture deleted successfully.");
+        });
+      }
+      // Set the new profile picture
       user.profilePic = '/images/uploads/' + req.file.filename; // Store relative path
-      console.log('New profile picture path:', user.profilePic); // Debugging line
     }
 
     // Update password if a new one is provided
@@ -342,6 +330,7 @@ server.post("/profile/update", isLoggedIn, upload.single("profilePic"), async fu
     res.status(500).send("Internal Server Error");
   }
 });
+
 
 server.get("/viewProfile" , isLoggedIn ,async function(req , res){
   const userId = req.user._id;
