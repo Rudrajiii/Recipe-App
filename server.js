@@ -32,7 +32,9 @@ function extractDate(timestampString) {
 const server = express();
 server.set("view engine", "ejs");
 server.set("views", path.join(__dirname, "views"));
-server.use(express.static("public"));
+// Serve static files from the 'public' directory
+server.use(express.static(path.join(__dirname, 'public')));
+// server.use(express.static("public"));
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 server.use(cookieParser());
@@ -51,7 +53,7 @@ passport.deserializeUser(User.deserializeUser());
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./public/images/uploads/"); // Save uploaded files to uploads directory
+    cb(null, path.join(__dirname, 'public/images/uploads/')); // Use absolute path // Save uploaded files to uploads directory
   },
   filename: function (req, file, cb) {
     cb(null, file.fieldname + Date.now() + path.extname(file.originalname)); // Rename file with current timestamp
@@ -310,7 +312,8 @@ server.post("/profile/update", isLoggedIn, upload.single("profilePic"), async fu
 
     // Update profile picture if a new one is uploaded
     if (req.file) {
-      user.profilePic = req.file.path;
+      user.profilePic = '/images/uploads/' + req.file.filename; // Store relative path
+      console.log('New profile picture path:', user.profilePic); // Debugging line
     }
 
     // Update password if a new one is provided
@@ -341,7 +344,8 @@ server.get("/viewProfile" , isLoggedIn ,async function(req , res){
     profile = "../images/uploads/default.jpg";
 
   }else{
-    profile = user.profilePic.replace("public/", "../");
+    // Ensure the profilePic path is relative to the 'public' directory
+    profile = user.profilePic.replace(/^public\//, '/');
   } 
 
   console.log(user);
@@ -368,6 +372,15 @@ server.post('/submit-feedback', async (req, res) => {
   }
 });
 
+
+// Debugging route to list uploaded files
+server.get('/debug-uploads', (req, res) => {
+  const uploadsDir = path.join(__dirname, 'public/images/uploads');
+  fs.readdir(uploadsDir, (err, files) => {
+    if (err) return res.status(500).send('Error reading uploads directory');
+    res.json(files);
+  });
+});
 
 //server listening on port 8080
 server.listen(PORT, () => {
