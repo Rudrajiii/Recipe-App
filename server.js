@@ -17,6 +17,8 @@ const {EMAIL , PASSWORD} = require("./env.js");
 const Mailgen = require("mailgen");
 const fs = require("fs");
 const userFeedbacks = require("./model/userFeedbacks.js");
+const { storage, ref, uploadBytes, getDownloadURL , deleteObject } = require('./firebase');
+const { v4: uuidv4 } = require('uuid');
 const PORT = process.env.PORT || 3000;
 passport.use(new localStrategy(User.authenticate()));
 
@@ -51,16 +53,20 @@ server.use(passport.session());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-const storage = multer.diskStorage({
+const multerStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, 'public/images/uploads/')); // Use absolute path // Save uploaded files to uploads directory
+    cb(null, path.join(__dirname, 'public/images/uploads/'));
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + Date.now() + path.extname(file.originalname)); // Rename file with current timestamp
+    const sanitizedFilename = file.fieldname + Date.now() + 
+      path.extname(file.originalname).replace(/\s+/g, '_'); // Replace spaces with underscores
+    cb(null, sanitizedFilename);
   },
 });
 
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: multerStorage });
+// Update the multer configuration to use memory storage
+const upload = multer({ storage: multer.memoryStorage() });
 
 server.get("/", function (req, res) {
   const itemNotFoundError = req.flash("error");
@@ -120,12 +126,24 @@ server.post(
       req.flash("error", "Please provide an email address");
       return res.redirect("/");
     }
-    if (!req.file) {
-      // Set default image path if no image is uploaded
-      profilePicPath = "../images/uploads/default.jpg";
+    if (req.file) {
+      const fileBuffer = req.file.buffer;
+      const filename = `${uuidv4()}_${req.file.originalname}`;
+      const storageRef = ref(storage, `images/${filename}`);
+      await uploadBytes(storageRef, fileBuffer);
+      profilePicPath = await getDownloadURL(storageRef);
     } else {
-      profilePicPath = '/images/uploads/' + req.file.filename;
+      profilePicPath = "/images/uploads/default.jpg";
     }
+    // if (!req.file) {
+    //   // Set default image path if no image is uploaded
+    //   profilePicPath = "../images/uploads/default.jpg";
+    // } else {
+    //   // profilePicPath = '/images/uploads/' + req.file.filename;
+    //   const storageRef = ref(storage, `images/${uuidv4()}_${req.file.originalname}`);
+    //   await uploadBytes(storageRef, req.file.buffer);
+    //   profilePicPath = await getDownloadURL(storageRef); // Get the Firebase URL
+    // }
     if (!req.body.username) {
       const userNameNotFoundError = req.flash("error", "Please provide a username");
       return res.redirect("/");
@@ -287,43 +305,47 @@ server.get("/profile/:userId", isLoggedIn, async function(req, res) {
 
 
 //*update User Profile
+
 server.post("/profile/update", isLoggedIn, upload.single("profilePic"), async function(req, res) {
   const userId = req.user._id;
 
   try {
-    // Find the user by ID
     const user = await User.findById(userId);
 
-    // Update email and username if provided
     user.email = req.body.email || user.email;
     user.username = req.body.username || user.username;
 
-    // Check if a new profile picture is uploaded
     if (req.file) {
       // Delete old profile picture if it's not the default
-      if (user.profilePic && user.profilePic !== "/images/uploads/default.jpg") {
-        const oldFilePath = path.join(__dirname, 'public', user.profilePic);
-        fs.unlink(oldFilePath, (err) => {
-          if (err) console.error("Error deleting old profile picture:", err);
-          else console.log("Old profile picture deleted successfully.");
-        });
+      if (user.profilePic && !user.profilePic.includes("default.jpg")) {
+        const oldFileName = user.profilePic.split('/').pop().split('?')[0];
+        const oldImageRef = ref(storage, `images/${oldFileName}`);
+        
+        try {
+          await deleteObject(oldImageRef);
+          console.log("Old profile picture deleted successfully.");
+        } catch (error) {
+          console.error("Error deleting old profile picture:", error);
+        }
+      
       }
-      // Set the new profile picture
-      user.profilePic = '/images/uploads/' + req.file.filename; // Store relative path
+      
+      // Upload the new profile picture
+      const fileBuffer = req.file.buffer;
+      const filename = `${uuidv4()}_${req.file.originalname}`;
+      const storageRef = ref(storage, `images/${filename}`);
+      await uploadBytes(storageRef, fileBuffer);
+      const newProfilePicUrl = await getDownloadURL(storageRef);
+      
+      user.profilePic = newProfilePicUrl;
     }
 
-    // Update password if a new one is provided
     if (req.body.password) {
-      await user.setPassword(req.body.password); // Use setPassword to properly hash and salt the new password
+      await user.setPassword(req.body.password);
     }
 
-    // Save the updated user object
     await user.save();
-
-    // Set a success flash message
     req.flash("success", "Profile successfully updated!");
-
-    // Redirect to the index page with the success flash message
     res.redirect("/index");
   } catch (error) {
     console.error("Error updating user information:", error);
@@ -331,25 +353,23 @@ server.post("/profile/update", isLoggedIn, upload.single("profilePic"), async fu
   }
 });
 
-
-server.get("/viewProfile" , isLoggedIn ,async function(req , res){
+server.get("/viewProfile", isLoggedIn, async function(req, res) {
   const userId = req.user._id;
   const user = await User.findById(userId);
   let profile;
 
-  if (!user.profilePic || user.profilePic === "/images/uploads/default.jpg") {
+  if (!user.profilePic || user.profilePic.includes("default.jpg")) {
     profile = "/images/uploads/default.jpg";
-  }else{
-    // Ensure the profilePic path is relative to the 'public' directory
+  } else {
     profile = user.profilePic;
-  } 
+  }
 
-  console.log(user);
-  res.render("viewProfile" ,{
+  res.render("viewProfile", {
     user,
     profile
   });
-})
+});
+
 
 server.post('/submit-feedback', async (req, res) => {
   const { name, message } = req.body;
