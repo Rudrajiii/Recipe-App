@@ -124,7 +124,7 @@ server.post(
       // Set default image path if no image is uploaded
       profilePicPath = "../images/uploads/default.jpg";
     } else {
-      profilePicPath = req.file.path;
+      profilePicPath = '/images/uploads/' + req.file.filename;
     }
     if (!req.body.username) {
       const userNameNotFoundError = req.flash("error", "Please provide a username");
@@ -293,17 +293,25 @@ server.post("/profile/update", isLoggedIn, upload.single("profilePic"), async fu
   try {
     // Find the user by ID
     const user = await User.findById(userId);
-
-    // Delete old profile picture if a new one is uploaded
-    if (req.file && user.profilePic && user.profilePic !== "../images/uploads/default.jpg") {
-      fs.unlink(user.profilePic, (err) => {
-        if (err) {
-          console.error("Error deleting old profile picture:", err);
-        } else {
+    // Delete old profile picture if it's not the default
+    if (user.profilePic && user.profilePic !== "/images/uploads/default.jpg") {
+      const oldFilePath = path.join(__dirname, 'public', user.profilePic);
+      fs.unlink(oldFilePath, (err) => {
+        if (err) console.error("Error deleting old profile picture:", err);
+        else {
           console.log("Old profile picture deleted successfully.");
         }
       });
     }
+    // if (req.file && user.profilePic && user.profilePic !== "../images/uploads/default.jpg") {
+    //   fs.unlink(user.profilePic, (err) => {
+    //     if (err) {
+    //       console.error("Error deleting old profile picture:", err);
+    //     } else {
+    //       console.log("Old profile picture deleted successfully.");
+    //     }
+    //   });
+    // }
 
     // Update email if provided
     user.email = req.body.email || user.email;
@@ -340,12 +348,11 @@ server.get("/viewProfile" , isLoggedIn ,async function(req , res){
   const user = await User.findById(userId);
   let profile;
 
-  if(!user.profilePic){
-    profile = "../images/uploads/default.jpg";
-
+  if (!user.profilePic || user.profilePic === "/images/uploads/default.jpg") {
+    profile = "/images/uploads/default.jpg";
   }else{
     // Ensure the profilePic path is relative to the 'public' directory
-    profile = user.profilePic.replace(/^public\//, '/');
+    profile = user.profilePic;
   } 
 
   console.log(user);
