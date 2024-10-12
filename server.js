@@ -266,7 +266,7 @@ function sendRegistrationEmail(userEmail , userName) {
     });
 }
 
-//*Update User Profile
+//*render User Profile
 server.get("/profile/:userId", isLoggedIn, async function(req, res) {
   if (req.user) {
     const userId = req.user._id;
@@ -286,7 +286,7 @@ server.get("/profile/:userId", isLoggedIn, async function(req, res) {
 });
 
 
-
+//*update User Profile
 server.post("/profile/update", isLoggedIn, upload.single("profilePic"), async function(req, res) {
   const userId = req.user._id;
 
