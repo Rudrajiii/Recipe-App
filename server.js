@@ -19,6 +19,8 @@ const fs = require("fs");
 const userFeedbacks = require("./model/userFeedbacks.js");
 const { storage, ref, uploadBytes, getDownloadURL , deleteObject } = require('./firebase');
 const { v4: uuidv4 } = require('uuid');
+
+
 const PORT = process.env.PORT || 3000;
 passport.use(new localStrategy(User.authenticate()));
 
@@ -203,6 +205,8 @@ function isLoggedIn(req, res, next) {
   res.redirect("/verify");
 }
 
+
+
 server.get("/api", async function (req, res) {
   try {
     const userPrompt = req.query.prompt;
@@ -210,6 +214,7 @@ server.get("/api", async function (req, res) {
     //   req.flash("error", "Input prompt cannot be empty");
     //   return res.redirect("/index"); // Adjust the redirect path to your form page
     // }
+
     const userId = req.user._id;
     const apiData = await main(userPrompt);
     res.json({ response: apiData }); //JSON
@@ -398,9 +403,19 @@ server.get('/debug-uploads', (req, res) => {
   });
 });
 
+server.get('/get-markdown', (req, res) => {
+  const filePath = path.join(__dirname, 'nutrition_analysis.md'); // Path to your markdown file
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      res.status(500).send('Error reading the markdown file');
+    } else {
+      res.send(data); // Send markdown content as response
+    }
+  });
+});
 //server listening on port 8080
 server.listen(PORT, () => {
-  console.log("listening on port 8080");
+  console.log("listening on port 8081 link\nhttp://localhost:8081");
 });
 
 

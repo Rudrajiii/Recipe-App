@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Bitter:ital,wght@0,100..900;1,100..900&family=Holtwood+One+SC&family=Kalam:wght@300;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Strike&display=swap');
 $primary-font-color: black;
 $special-font-color: #E0E6EC;
+
 h1{
     color:rgb(235, 119, 138)
 }
@@ -19,29 +20,41 @@ nav{
     display: flex;
     align-items: center;
     position: relative;
-    .history{
-        width: 10vw;
-        font-size: 1.3rem;
-        // border: 2px solid black;
+    .navBtns{
+        width: 50vw;
         left: 10px;
-        display: grid;
-        place-items: center;
-        position: absolute;
-        font-family: "Kalam", cursive;
-        font-weight: 400;
-        font-style: normal;
-        a{
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            margin-left: 10px;
-            gap: 2vh;
-            color: $special-font-color;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        gap: 2vh;
+        .history1{
+            position: absolute;
+            left: 150px;
         }
-        .fa-solid{
+        .history{
+            // width: 50vw;
+            font-size: 1.3rem;
+            left: 10px;
             display: flex;
             align-items: center;
-            color: $special-font-color;
+            flex-direction: row;
+            position: absolute;
+            font-family: "Kalam", cursive;
+            font-weight: 400;
+            font-style: normal;
+            a{
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                margin-left: 10px;
+                gap: 2vh;
+                color: $special-font-color;
+            }
+            .fa-solid{
+                display: flex;
+                align-items: center;
+                color: $special-font-color;
+            }
         }
     }
     .profile_pic{
@@ -147,7 +160,8 @@ input[type="color"]:focus,
     display: flex;
     width: 100%;
     min-height: 10vh;
-    .feedback{
+    .class{
+        width: 20%;
         font-size: 2rem;
         padding: 0 .7rem;
         display: flex;
@@ -159,15 +173,24 @@ input[type="color"]:focus,
         font-style: normal;
         margin-left: 1.6rem;
         align-items: center;
-        
-        
+        #food-analysis{
+            padding: .75rem;
+            border-radius: .6rem;
+            border: none;
+            font-size: 17px;
+            font-weight: 500;
+            filter: drop-shadow(2px 3px 5px rgba(81, 81, 81, 0.523));
+            background: rgb(88, 226, 88);
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
     }
+
     .grabber{
-        width: 70%;
+        width: 90%;
         gap: 1.5vh;
         display: flex;
         text-align: end;
-        margin-left: 13rem;
+        margin-left: 11.5rem;
         align-items: center;
         justify-content: center;
         
@@ -196,6 +219,7 @@ input[type="color"]:focus,
             background: white;
             filter: drop-shadow(2px 3px 5px rgba(81, 81, 81, 0.523));
         }
+        
     }
     
 }
@@ -377,7 +401,7 @@ footer{
         }
     }
     nav{
-        .history{
+        .navBtns{
             display: none;
         }
         .dropdown{
@@ -394,7 +418,19 @@ footer{
     }
     
 }
-
+@media (max-width:775px){
+    .main{
+        width: 100%;
+        display: grid;
+        place-items: center;
+        padding: .4rem;
+        .class{
+            #food-analysis{
+                display: none;
+            }
+        }
+    }
+}
 @media (max-width: 685){
     .response{
         width: 100%;

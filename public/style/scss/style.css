@@ -27,18 +27,30 @@ nav {
   align-items: center;
   position: relative;
 }
-nav .history {
-  width: 10vw;
+nav .navBtns {
+  width: 50vw;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 2vh;
+}
+nav .navBtns .history1 {
+  position: absolute;
+  left: 150px;
+}
+nav .navBtns .history {
   font-size: 1.3rem;
   left: 10px;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
   position: absolute;
   font-family: "Kalam", cursive;
   font-weight: 400;
   font-style: normal;
 }
-nav .history a {
+nav .navBtns .history a {
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -46,7 +58,7 @@ nav .history a {
   gap: 2vh;
   color: #E0E6EC;
 }
-nav .history .fa-solid {
+nav .navBtns .history .fa-solid {
   display: flex;
   align-items: center;
   color: #E0E6EC;
@@ -152,7 +164,8 @@ input[type=color]:focus,
   width: 100%;
   min-height: 10vh;
 }
-.main .feedback {
+.main .class {
+  width: 20%;
   font-size: 2rem;
   padding: 0 0.7rem;
   display: flex;
@@ -165,12 +178,22 @@ input[type=color]:focus,
   margin-left: 1.6rem;
   align-items: center;
 }
+.main .class #food-analysis {
+  padding: 0.75rem;
+  border-radius: 0.6rem;
+  border: none;
+  font-size: 17px;
+  font-weight: 500;
+  filter: drop-shadow(2px 3px 5px rgba(81, 81, 81, 0.523));
+  background: rgb(88, 226, 88);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
 .main .grabber {
-  width: 70%;
+  width: 90%;
   gap: 1.5vh;
   display: flex;
   text-align: end;
-  margin-left: 13rem;
+  margin-left: 11.5rem;
   align-items: center;
   justify-content: center;
 }
@@ -352,7 +375,7 @@ footer h2 a {
   .response #result h4 h4 {
     font-size: 0.8rem !important;
   }
-  nav .history {
+  nav .navBtns {
     display: none;
   }
   nav .dropdown {
@@ -365,6 +388,17 @@ footer h2 a {
   nav .profile_pic {
     width: 40vw;
     margin: auto;
+  }
+}
+@media (max-width: 775px) {
+  .main {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding: 0.4rem;
+  }
+  .main .class #food-analysis {
+    display: none;
   }
 }
 @media (max-width: 685) {

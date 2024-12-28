@@ -1,6 +1,6 @@
-
 const btn = document.getElementById("btn");
 const progressBar = document.getElementById("progressBar");
+
 
 // Function to show the loading animation
 function showLoadingAnimation() {
@@ -11,12 +11,13 @@ function showLoadingAnimation() {
 function hideLoadingAnimation() {
     progressBar.style.display = "none";
 }
+
 document.getElementById('btn').addEventListener('click', async () => {
     try {
 
         
         const userInput = document.getElementById('input').value;
-
+        localStorage.setItem("userPrompt" , userInput);
         showLoadingAnimation(); 
         // console.log(userInput);
         const startTime = performance.now();
@@ -24,7 +25,7 @@ document.getElementById('btn').addEventListener('click', async () => {
         // Fetch data from API with user input as prompt
 
         const response = await fetch(`/api?prompt=${encodeURIComponent(userInput)}`);
-
+        
         // End time after receiving the response
         const endTime = performance.now();
 

@@ -9,6 +9,8 @@
     <script src="../js/index.js" defer></script>
     <script src="../js/auth.js" defer></script>
     <script src="../js/format.js" defer></script>
+    <!-- <script src="../js/foodCard.js" defer></script> -->
+    <!-- <script src="../js/foodData.js" defer></script> -->
     <link rel="stylesheet" href="../style/scss/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -24,9 +26,14 @@
     <% }%>
     <!-- Nav Bar Code -->
     <nav>
+      <div class="navBtns">
         <div class="history" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-            <a  class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Search History" href=""><i class="fa-solid fa-clock-rotate-left"></i>History</a>
+          <a  class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Search History" href=""><i class="fa-solid fa-clock-rotate-left"></i>History</a>
         </div>
+        <div class="history1" type="button">
+          <a  class="btn btn-secondary" data-bs-toggle="modal"  data-bs-target="#exampleModal" data-bs-title="Share Recipe" data-bs-whatever="@fat">Share Your Own Recipe 🍔</a>
+        </div>
+      </div>
         <div class="dropdown" style="display: none;">
           <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Menu
@@ -35,12 +42,14 @@
             <li><a class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">History</a></li>
             <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">Feedbacks</a></li>
             <li><a class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">Demo Prompts</a></li>
+            <!-- <li><a class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop" id="food-analysis">Ananlyze 🍟</a></li> -->
           </ul>
         </div>
         <div class="profile_pic">
             <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/my-recipes-logo.png" alt="Pic">
             <p id="name-h">Hey! <%= userData.username %> 👋</p>
         </div>
+
         <div class="logoutButton">
             <a href="/logout">logout</a>
         </div>
@@ -90,6 +99,8 @@
   </div>
 
 <!--? History Toggleing -->
+
+
 
 <!--? Another Top Toggle -->
 <!-- <button class="btn btn-primary" type="button" >Toggle top offcanvas</button> -->
@@ -184,15 +195,20 @@
 
     <!-- <h1>Welcome! <%= userData.username %></h1> -->
     <div class="main">
-        <div class="feedback" >
+        <!-- <div class="feedback" >
             <button type="button" class="btn" id="huh" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">
                 <h3 style="margin-top: .6rem;white-space: nowrap; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Share Recipe 🍔</h3>
             </button>
+        </div> -->
+        <div class="class">
+          <button id="food-analysis">Ananlyze 🍟</button>
         </div>
         <div class="grabber">
             <img src="<%= modifiedImagePath %>" alt="pic" class="userProfile">
             <textarea name="input" id="input" placeholder="Enter Your Prompt"></textarea>
             <button id="btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></button>
+            <!-- <button id="food-analysis">Ananlyze 🍟</button> -->
+            <div id="popup-container"></div>
         </div>
     </div>
 
