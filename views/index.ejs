@@ -9,9 +9,10 @@
     <script src="../js/index.js" defer></script>
     <script src="../js/auth.js" defer></script>
     <script src="../js/format.js" defer></script>
-    <!-- <script src="../js/foodCard.js" defer></script> -->
-    <!-- <script src="../js/foodData.js" defer></script> -->
+    <script src="../js/analysisBtnForSmallScreens.js" defer></script>
     <link rel="stylesheet" href="../style/scss/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -28,10 +29,10 @@
     <nav>
       <div class="navBtns">
         <div class="history" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-          <a  class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Search History" href=""><i class="fa-solid fa-clock-rotate-left"></i>History</a>
+          <a style="font-family: cursive !important;"  class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Search History" href=""><i class="fa-solid fa-clock-rotate-left"></i>History</a>
         </div>
         <div class="history1" type="button">
-          <a  class="btn btn-secondary" data-bs-toggle="modal"  data-bs-target="#exampleModal" data-bs-title="Share Recipe" data-bs-whatever="@fat">Share Your Own Recipe 🍔</a>
+          <a  class="btn btn-secondary" data-bs-toggle="modal"  data-bs-target="#exampleModal" data-bs-title="Share Recipe" data-bs-whatever="@fat">Give Us Feedback 🍔</a>
         </div>
       </div>
         <div class="dropdown" style="display: none;">
@@ -39,7 +40,8 @@
             Menu
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">History</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#" id="food-analysis-mobile">Ananlyze & Share 🍟</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" >History</a></li>
             <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">Feedbacks</a></li>
             <li><a class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">Demo Prompts</a></li>
             <!-- <li><a class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop" id="food-analysis">Ananlyze 🍟</a></li> -->
@@ -47,7 +49,7 @@
         </div>
         <div class="profile_pic">
             <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/my-recipes-logo.png" alt="Pic">
-            <p id="name-h">Hey! <%= userData.username %> 👋</p>
+            <p id="name-h" style="font-family: cursive;">Hey! <%= userData.username %> 👋</p>
         </div>
 
         <div class="logoutButton">
@@ -201,11 +203,11 @@
             </button>
         </div> -->
         <div class="class">
-          <button id="food-analysis">Ananlyze 🍟</button>
+          <button id="food-analysis">Ananlyze & Share🍟</button>
         </div>
         <div class="grabber">
             <img src="<%= modifiedImagePath %>" alt="pic" class="userProfile">
-            <textarea name="input" id="input" placeholder="Enter Your Prompt"></textarea>
+            <textarea name="input" id="input" placeholder="Enter Your Fav Dish" style="font-family: cursive;"></textarea>
             <button id="btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></button>
             <!-- <button id="food-analysis">Ananlyze 🍟</button> -->
             <div id="popup-container"></div>
@@ -213,9 +215,9 @@
     </div>
 
 <div class="response">
-    <div class="demoItem">
+    <div class="demoItem" >
             <h2 style="color: whitesmoke;">Demo Prompts 📃</h2>
-            <div class="cpyItem">
+            <div class="cpyItem" >
                 <div class="horizontal_wrapper" style="display: flex; width: 100%; gap: .3rem;">
                   <p>
                     ⭐ Generate a recipe for tasty Chicken Biriyani In Indian Style. 
@@ -230,7 +232,7 @@
             <div class="cpyItem b">
               <div class="horizontal_wrapper" style="display: flex; width: 100%; gap: .3rem;">
                 <p>
-                  ⭐ Generate a recipe for delicious Japanese Food also tell me the steps of cooking.  
+                  ⭐Make some recipe for Japanese Food also tell me the steps of cooking.  
                 </p>
                 <div class="img_holder">
                   <img style="width: 5rem; aspect-ratio: 1/1; border-radius: .4rem;" src="https://tse2.mm.bing.net/th?id=OIP.pJMBum-3fZcZiPITQh_b9QHaEK&pid=Api&P=0&h=180" alt="">
@@ -250,7 +252,6 @@
               </div>
               <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
               </div>
-
             <div class="cpyItem b">
               <div class="horizontal_wrapper" style="display: flex; width: 100%; gap: .3rem;">
                 <p>
@@ -309,12 +310,10 @@
                 <img id="bot"  src="https://tse3.mm.bing.net/th?id=OIP.JU23CZMWiiKqQJl1mKiXQQHaHa&pid=Api&P=0&h=180" alt="">
                 <h4 id="botu">Start Generating Your Favourite Recipie's😋</h4>
             </div>
+            <!-- <div id="pagination" style="text-align: center; margin-top: 1rem;"></div> -->
     </div>
-    <section style="background: #ebe6e6; color: cadetblue; text-align: center;">
-      hellow new section is coming soon..
-    </section>
     <footer>
-      <h2 id="h2ka">@2024 All Copy Right is Reserved</h2>
+      <h2 id="h2ka">@2025 All Copy Right is Reserved</h2>
       <h2 id="h2kaa">~ Made By Rudra ❤️ ~</h2>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

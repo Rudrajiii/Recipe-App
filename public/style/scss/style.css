@@ -98,6 +98,7 @@ nav .logoutButton {
   padding: 0 1rem;
   width: 15vw;
   right: 10vw;
+  font-family: cursive;
   display: grid;
   place-items: center;
 }
@@ -247,6 +248,7 @@ input[type=color]:focus,
   transform: translate(-50%, -50%);
 }
 .response #result {
+  border: 4px solid #58E258;
   width: 70vw;
   border-top-left-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -254,11 +256,23 @@ input[type=color]:focus,
   position: relative;
   background: #E0E6EC;
   margin: 1rem;
-  border: none !important;
-  font-family: "Kalam", cursive;
+  font-family: cursive;
   font-weight: 400;
   font-size: 20px;
   font-style: normal;
+}
+.response .page-btn {
+  padding: 0.5rem 1rem;
+  margin: 0.2rem;
+  border: 1px solid #ddd;
+  background-color: #f4f4f4;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.response .page-btn.active {
+  background-color: #58E258;
+  color: white;
+  border-color: #58E258;
 }
 .response .demoItem {
   background: #111826;
@@ -269,7 +283,7 @@ input[type=color]:focus,
   align-items: center;
 }
 .response .demoItem h2 {
-  font-family: "Kalam", cursive;
+  font-family: cursive;
   font-weight: 600;
   font-style: normal;
   color: rgba(0, 0, 0, 0.742);
@@ -287,9 +301,10 @@ input[type=color]:focus,
   background: #E0E6EC;
   border: 1px solid;
   font-size: 1.2rem;
-  font-family: "Kalam", cursive;
+  font-family: cursive;
   font-weight: 400;
   font-style: normal;
+  margin-bottom: 5px;
 }
 .response .demoItem .cpyItem .copy {
   position: absolute;
@@ -308,15 +323,35 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  padding: 1rem;
 }
 footer h2 {
   font-size: 1.3rem;
-  font-family: "Kalam", cursive;
+  font-family: cursive;
   font-weight: 400;
   font-style: normal;
+  text-align: center;
 }
 footer h2 a {
   text-decoration: none;
+}
+@media screen and (max-width: 768px) {
+  footer {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+  }
+  footer h2 {
+    font-size: 1.1rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  footer {
+    padding: 0.5rem;
+  }
+  footer h2 {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 1300px) {
@@ -437,4 +472,54 @@ footer h2 a {
     font-size: 1.1rem !important;
     padding: 12px 19px;
   }
+}
+.tutorial-modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.tutorial-modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+}
+
+.tutorial-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.language-dropdown {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 10px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.language-dropdown:hover {
+  border-color: #888;
+}
+
+.language-dropdown:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 3px rgba(0, 102, 204, 0.5);
 }/*# sourceMappingURL=style.css.map */

@@ -152,3 +152,69 @@ body, html {
         }
     }
 }
+
+.reminder-container {
+    display: flex;
+    justify-content: flex-start;  // Align to the right side
+    width: 100%;  // Ensure the parent container takes full width
+    margin-left: 1.3rem;
+}
+
+.reminder {
+    display: flex;
+    align-items: center;
+    gap: 1rem;  // Smaller gap between checkbox and text
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    color: #666666;
+    cursor: pointer;
+    white-space: nowrap;
+
+    input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        accent-color: #0287FF;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    label {
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    input[type="checkbox"]:checked + label {
+        color: #0287FF;
+        font-weight: 500;
+    }
+}
+
+/* Tablets and smaller devices */
+@media (max-width: 768px) {
+    .reminder {
+        font-size: 13px;
+        gap: 3px;
+
+        input[type="checkbox"] {
+            width: 14px;
+            height: 14px;
+        }
+    }
+}
+
+/* Mobile screens */
+@media (max-width: 480px) {
+    .reminder {
+        font-size: 12px;
+        gap: 2px;
+
+        input[type="checkbox"] {
+            width: 12px;
+            height: 12px;
+        }
+    }
+}
