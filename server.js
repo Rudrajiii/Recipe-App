@@ -38,6 +38,9 @@ function extractDate(timestampString) {
   return match ? match[1] : null;
 }
 require('dotenv').config();
+
+const BASE_URL = "https://food-api-production-5a82.up.railway.app";
+
 const server = express();
 
 server.use(cors({
@@ -706,7 +709,7 @@ server.get('/getTutorial', async (req, res) => {
   try {
     const userInput = req.query.userInput; 
     console.log(userInput);
-    const response = await axios.get(`https://food-api-pi0o.onrender.com/search?query=${userInput}&maxResults=1`);
+    const response = await axios.get(`${BASE_URL}/search?query=${userInput}&maxResults=1`);
 
     if (!response.data.items || response.data.items.length === 0) {
       return res.status(404).json({ message: 'No tutorial found.' });
@@ -738,7 +741,7 @@ server.get('/translate', async (req, res) => {
 
       // Call the external translation API
       //https://food-api-pi0o.onrender.com
-      const response = await axios.get('https://food-api-pi0o.onrender.com/tran', {
+      const response = await axios.get(`${BASE_URL}/tran`, {
           params: {
               prompt: text,
               targetLang: targetLang

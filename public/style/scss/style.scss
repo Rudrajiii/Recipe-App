@@ -1,5 +1,8 @@
 @forward 'globals';
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Bitter:ital,wght@0,100..900;1,100..900&family=Holtwood+One+SC&family=Kalam:wght@300;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Strike&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 $primary-font-color: black;
 $special-font-color: #E0E6EC;
 
@@ -10,7 +13,11 @@ h1{
     border: 2px solid black;
     width: 50%;
 }
-
+#name-h , #hishis , #popup-container{
+  font-family: "Lato", sans-serif !important;
+  font-weight: 500;
+  font-style: normal;
+}
 nav{
     width: 100%;
     // background: red;
@@ -96,7 +103,8 @@ nav{
         width: 15vw;
         right: 10vw;
         // border: 2px solid black;
-        font-family: cursive;
+        font-family: "Lato",sans-serif;
+        font-weight: 500;
         display: grid;
         place-items: center;
         a{
@@ -174,6 +182,7 @@ input[type="color"]:focus,
         font-style: normal;
         margin-left: 1.6rem;
         align-items: center;
+        white-space: nowrap;
         #food-analysis{
             padding: .75rem;
             border-radius: .6rem;
@@ -201,6 +210,8 @@ input[type="color"]:focus,
             border-radius: 2rem;
             padding: 12px 20px;
             font-size: 1.3rem;
+            font-family: "Lato", sans-serif;
+            font-weight: 500;
             border: none;
             outline: none !important;
             overflow: hidden;
@@ -261,8 +272,8 @@ input[type="color"]:focus,
         background: #E0E6EC ;
         margin: 1rem;
         // border: none !important;
-        font-family: cursive;
-        font-weight: 400;
+        font-family: "Lato", sans-serif;
+        font-weight: 500;
         font-size: 20px;
         font-style: normal;
     }
@@ -284,7 +295,7 @@ input[type="color"]:focus,
     .demoItem {
         background: #111826;
         h2{
-            font-family: cursive;
+            font-family: "Ubuntu", sans-serif;
             font-weight: 600;
             font-style: normal;
             color: rgba(0, 0, 0, 0.742);
@@ -309,9 +320,9 @@ input[type="color"]:focus,
             border-radius: 10px 20px; 
             background: #E0E6EC;
             border: 1px solid;
-            font-size: 1.2rem;
-            font-family: cursive;
-            font-weight: 400;
+            font-size: 1.1rem;
+            font-family: "Lato", sans-serif;
+            font-weight: 500;
             font-style: normal;
             margin-bottom: 5px;
             .copy{
@@ -335,13 +346,13 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     padding: 1rem; // Added padding for better spacing
 
     h2 {
         font-size: 1.3rem;
-        font-family: cursive;
-        font-weight: 400;
-        font-style: normal;
         text-align: center; // Ensures text is centered on smaller screens
         
         a {

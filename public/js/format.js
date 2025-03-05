@@ -384,6 +384,8 @@ function createPopup(nutritionData, recipeLink) {
   popupContainer.style.zIndex = '1000';
   popupContainer.style.backdropFilter = 'blur(5px)';
   popupContainer.style.transition = 'all 0.3s ease-in-out';
+  popupContainer.style.fontFamily = 'Lato, sans-serif'; // Apply the Lato font
+
 
   // Create popup card
   const popupCard = document.createElement('div');
@@ -395,7 +397,6 @@ function createPopup(nutritionData, recipeLink) {
   popupCard.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.3)';
   popupCard.style.overflowY = 'auto';
   popupCard.style.maxHeight = '85vh';
-  popupCard.style.fontFamily = 'cursive';
   popupCard.style.textAlign = 'left';
   popupCard.style.animation = 'fadeIn 0.3s ease-out';
   popupCard.style.position = 'relative';
@@ -421,6 +422,7 @@ function createPopup(nutritionData, recipeLink) {
         width: 100%;
         height: 100%;
         background: white;
+        font-family:"Lato";
       }
       .no-print {
         display: none !important;
@@ -432,7 +434,7 @@ function createPopup(nutritionData, recipeLink) {
   // Create close button
   const closeButton = document.createElement('button');
   closeButton.className = 'no-print';
-  closeButton.innerHTML = '&times;';
+  closeButton.innerHTML = '❌';
   closeButton.style.position = 'absolute';
   closeButton.style.top = '15px';
   closeButton.style.right = '15px';
@@ -468,6 +470,7 @@ function createPopup(nutritionData, recipeLink) {
   content.style.lineHeight = '1.6';
   content.style.color = '#333';
   content.style.marginTop = '10px';
+
 
   function renderNestedObject(obj) {
     if (!obj) return '';
@@ -508,7 +511,6 @@ function createPopup(nutritionData, recipeLink) {
 
   // Add CSS for better styling
   const contentStyle = document.createElement('style');
-  contentStyle.style.fontFamily = 'cursive';
   contentStyle.textContent = `
     .nutrition-section {
       padding: 18px;
@@ -553,7 +555,7 @@ function createPopup(nutritionData, recipeLink) {
   document.head.appendChild(contentStyle);
 
   content.innerHTML = `
-    <h2 style="text-align: center; color: #2c3e50; font-size: 28px; margin-bottom: 25px; font-weight: 700;">Comprehensive Nutrition Analysis</h2>
+    <h2 style="text-align: center; color: #2c3e50; font-size: 28px; margin-bottom: 25px; font-weight: 700; font-family:"Lato";>Comprehensive Nutrition Analysis</h2>
     
     ${nutritionData.calories ? `
       <div class="nutrition-section" style="background: #f7fbfc; border-left: 5px solid #4caf50;">
