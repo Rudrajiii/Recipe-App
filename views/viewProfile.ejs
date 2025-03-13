@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-tooltip/2.0.0/chartjs-plugin-tooltip.min.js"></script>
     <style>
       /* Global Styles */
+/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -47,31 +48,29 @@ html, body {
   color: #e0e0e0;
   height: 100%;
   width: 100%;
-  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
 }
 
 body {
+  padding: 10px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 10px;
+  align-items: flex-start; /* Changed from center to allow scrolling */
 }
 
 /* Main Container */
 .container {
   width: 100%;
   max-width: 1200px;
-  height: auto;
-  min-height: 95vh;
-  margin: 0 auto;
+  margin: 10px;
   border: 2px solid #2d2d2d;
   border-radius: 15px;
   padding: 15px;
   background-color: #1e1e1e;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  overflow: visible; /* Allow content to determine container size */
 }
 
 /* Grid Layout */
@@ -79,9 +78,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 20px;
-  flex: 1;
-  height: 100%;
-  overflow: hidden;
+  width: 100%;
 }
 
 /* User Info Panel */
@@ -93,8 +90,8 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: #252525;
-  overflow-y: auto;
-  height: 100%;
+  height: auto; /* Auto height to fit content */
+  min-height: min-content;
 }
 
 .profile-image {
@@ -120,6 +117,7 @@ body {
 .user-info, .food-stats {
   width: 100%;
   text-align: center;
+  margin-bottom: 15px;
 }
 
 .username {
@@ -133,6 +131,7 @@ body {
   font-size: 18px;
   color: #b0b0b0;
   word-break: break-word;
+  margin-bottom: 5px;
 }
 
 hr {
@@ -145,11 +144,9 @@ hr {
 /* Content Panel */
 .content-panel {
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto auto; /* Changed from fractional to auto */
   gap: 20px;
   border-radius: 12px;
-  overflow: hidden;
-  height: 100%;
 }
 
 .graph-container {
@@ -159,7 +156,6 @@ hr {
   background-color: #252525;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 .graph-title {
@@ -171,8 +167,7 @@ hr {
 
 .chart-wrapper {
   width: 100%;
-  flex: 1;
-  min-height: 200px;
+  height: 200px; /* Fixed height for chart */
   position: relative;
 }
 
@@ -180,7 +175,6 @@ hr {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  overflow: hidden;
 }
 
 .stats-box {
@@ -190,8 +184,8 @@ hr {
   background-color: #252525;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  height: 100%;
+  max-height: 300px; /* Fixed max height */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .stats-title {
@@ -337,7 +331,7 @@ hr {
 }
 
 .fs {
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 5px;
   word-break: break-word;
 }
@@ -346,21 +340,19 @@ hr {
 @media (max-width: 900px) {
   .profile-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto;
   }
   
   .user-panel {
     padding: 15px;
-  }
-  
-  .content-panel {
-    grid-template-rows: auto 1fr;
+    margin-bottom: 20px;
   }
 }
 
 @media (max-width: 768px) {
   .container {
     padding: 10px;
+    margin: 5px;
   }
   
   .stats-container {
@@ -372,18 +364,31 @@ hr {
     width: 130px;
     height: 130px;
   }
+  
+  .stats-box {
+    margin-bottom: 20px;
+  }
 }
 
 @media (max-width: 480px) {
-  .container {
-    padding: 8px;
+  body {
+    padding: 5px;
   }
   
-  .profile-grid, .content-panel, .stats-container {
+  .container {
+    padding: 8px;
+    margin: 2px;
+  }
+  
+  .profile-grid,
+  .content-panel,
+  .stats-container {
     gap: 10px;
   }
   
-  .user-panel, .graph-container, .stats-box {
+  .user-panel,
+  .graph-container,
+  .stats-box {
     padding: 12px;
   }
   
@@ -397,7 +402,8 @@ hr {
     font-size: 18px;
   }
   
-  .email, .button {
+  .email,
+  .button {
     font-size: 14px;
   }
   
@@ -405,13 +411,14 @@ hr {
     font-size: 16px;
   }
   
-  .graph-title, .stats-title {
+  .graph-title,
+  .stats-title {
     font-size: 16px;
     margin-bottom: 10px;
   }
   
   .chart-wrapper {
-    min-height: 160px;
+    height: 160px;
   }
   
   .recipe-list li {
@@ -430,14 +437,15 @@ hr {
     font-size: 16px;
   }
   
-  .email, .button {
+  .email,
+  .button {
     font-size: 12px;
   }
   
   .fs {
     font-size: 14px;
   }
-}
+}   
     </style>
 </head>
 <body>
