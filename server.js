@@ -695,7 +695,7 @@ server.get("/history", async (req, res) => {
   try {
     // Default user ID or use the one from request parameters
     let _id = req.query.userId;
-    console.log(_id);
+    // console.log(_id);
 
     // Fetch all records from the database
     const promptHistory = await SearchHistory.find({});
@@ -706,7 +706,7 @@ server.get("/history", async (req, res) => {
     // Process each record to count queries per user
     for (let record of promptHistory) {
       let user_id = String(record.user);
-      console.log(user_id);
+      // console.log(user_id);
       const query = record.query;
 
       if (!queryCount[user_id]) {
