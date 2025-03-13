@@ -154,7 +154,8 @@ function createPaginationControls() {
         { code: 'es', name: 'Spanish' },
         { code: 'fr', name: 'French' },
         { code: 'de', name: 'German' },
-        { code: 'bn', name: 'Bengali' }
+        { code: 'bn', name: 'Bengali' },
+        { code: 'en', name: 'English' },
     ];
 
     languages.forEach(lang => {

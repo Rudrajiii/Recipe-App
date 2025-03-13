@@ -39,7 +39,15 @@ function extractDate(timestampString) {
 }
 require('dotenv').config();
 
-const BASE_URL = "https://food-api-production-5a82.up.railway.app";
+// const BASE_URL = "https://food-api-production-5a82.up.railway.app";
+let BASE_URL = undefined;
+if(process.env.PRODUCTION === "true"){
+  console.log("-- Production mode activated");
+  BASE_URL = "https://food-api-production-5a82.up.railway.app";
+}else{
+  console.log("-- Development mode activated");
+  BASE_URL = "https://food-api-pi0o.onrender.com";
+}
 
 const server = express();
 
@@ -619,6 +627,8 @@ server.post("/profile/update", isLoggedIn, upload.single("profilePic"), async fu
 server.get("/viewProfile", isLoggedIn, async function(req, res) {
   const userId = req.user._id;
   const user = await User.findById(userId);
+  const recipe_details = await generatedRecipes.find({ user_id: userId });
+  // console.log(recipe_details , recipe_details.length);
   let profile;
 
   if (!user.profilePic || user.profilePic.includes("default.jpg")) {
@@ -626,10 +636,17 @@ server.get("/viewProfile", isLoggedIn, async function(req, res) {
   } else {
     profile = user.profilePic;
   }
+  const shortenText = (text, maxLength) => {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + "...";
+  };
 
   res.render("viewProfile", {
     user,
-    profile
+    profile,
+    userId,
+    recipe_details,
+    shortenText,
   });
 });
 
@@ -672,17 +689,63 @@ server.get('/get-markdown', (req, res) => {
   });
 });
 
+
+
 server.get("/history", async (req, res) => {
   try {
+    // Default user ID or use the one from request parameters
+    let _id = req.query.userId;
+    console.log(_id);
+
+    // Fetch all records from the database
+    const promptHistory = await SearchHistory.find({});
+
+    // Initialize query count object
+    const queryCount = {};
+
+    // Process each record to count queries per user
+    for (let record of promptHistory) {
+      let user_id = String(record.user);
+      console.log(user_id);
+      const query = record.query;
+
+      if (!queryCount[user_id]) {
+        queryCount[user_id] = {};
+      }
+
+      // Only count non-empty and defined queries
+      if (query && query.trim() !== "") {
+        queryCount[user_id][query] = (queryCount[user_id][query] || 0) + 1;
+      }
+    }
+
+    // Extract query count for the specific user
+    let userQueryCount = queryCount[_id] || {};
+
+    // Send the JSON response
+    res.json(userQueryCount);
+
+    // Write the full query count to a file after sending the response
+    fs.writeFileSync('queryCount.json', JSON.stringify(queryCount, null, 4));
+    console.log("Query count saved to queryCount.json");
+  } catch (error) {
+    // Handle errors and send a meaningful response
+    console.error("Error fetching history:", error);
+    res.status(500).json({ error: "An error occurred while processing the request." });
+  }
+});
+
+
+
+server.get("/history", async (req, res) => {
+  try {
+      let _id = "67096e4f1ddc7749a57ed49b" || req.params.userId;
       const promptHistory = await SearchHistory.find({});
-      res.json(promptHistory);
-      
       const queryCount = {};
 
       for (let record of promptHistory) {
           let user_id = record.user;
           const query = record.query;
-          
 
           if (!queryCount[user_id]) {
               queryCount[user_id] = {};
@@ -691,7 +754,10 @@ server.get("/history", async (req, res) => {
             queryCount[user_id][query] = (queryCount[user_id][query] || 0) + 1;
           }
       }
-      
+
+      // res.json(queryCount);
+      let i = queryCount[_id];
+      res.json(i);
       fs.writeFileSync('queryCount.json', JSON.stringify(queryCount, null, 4));
       console.log("Query count saved to queryCount.json");
 

@@ -259,61 +259,6 @@ button.addEventListener("mouseover", () => {
   button.innerHTML = `Ananlyze & Share ${randomEmoji}`;
 });
 
-// const recipeLink = "http://localhost:8081/share/67096e4f1ddc7749a57ed49b/67c48500d1538c8c198991ec";
-
-// document.getElementById('food-analysis').addEventListener('click', function() {
-//   //*Fetch the markdown file content from the server
-
-//   fetch(`/get-markdown`)
-//     .then(response => {
-//       if (!response.ok) {
-//         throw new Error('Failed to fetch markdown file');
-//       }
-//       return response.text();
-//     })
-//     .then(markdownContent => {
-//       //*regex to extract JSON from the markdown content
-//       const jsonMatchBlock = markdownContent.match(/```json\s*([\s\S]*?)```/);
-//       const jsonMatchObject = markdownContent.match(/{[^]*}/);  // For standalone JSON
-
-//       let nutritionData = null;
-//       let recipeLink = localStorage.getItem('recipeLink');
-//       if (jsonMatchBlock && jsonMatchBlock[1]) {
-//         try {
-//           const nutritionDataBlock = JSON.parse(jsonMatchBlock[1].trim());
-//           nutritionData = JSON.parse(jsonMatchBlock[1].trim());
-
-//           localStorage.setItem('nutritionAnalysis', JSON.stringify(nutritionDataBlock));
-
-//           console.log('Nutrition data (from code block) extracted and stored:', nutritionDataBlock);
-//         } catch (error) {
-//           console.error('Error parsing JSON from code block:', error);
-//         }
-//       } else if (jsonMatchObject && jsonMatchObject[0]) {
-//         try {
-//           const nutritionDataObject = JSON.parse(jsonMatchObject[0].trim());
-//           nutritionData = JSON.parse(jsonMatchObject[0].trim());
-//           localStorage.setItem('nutritionAnalysis', JSON.stringify(nutritionDataObject));
-
-//           console.log('Nutrition data (from object) extracted and stored:', nutritionDataObject);
-//         } catch (error) {
-//           console.error('Error parsing standalone JSON:', error);
-//         }
-//       } else {
-//         console.error('No JSON found in markdown');
-//       }
-//       if (nutritionData) {
-//         localStorage.setItem('nutritionAnalysis', JSON.stringify(nutritionData));
-//         console.log('Nutrition data extracted and stored:', nutritionData);
-
-//         //*popup ko show kr de bruh
-//         createPopup(nutritionData , recipeLink);
-//       }
-//     })
-//     .catch(error => {
-//       console.error('Error fetching markdown file:', error);
-//     });
-// });
 
 document.getElementById('food-analysis').addEventListener('click', function() {
   //*Fetch the markdown file content from the server
@@ -384,7 +329,7 @@ function createPopup(nutritionData, recipeLink) {
   popupContainer.style.zIndex = '1000';
   popupContainer.style.backdropFilter = 'blur(5px)';
   popupContainer.style.transition = 'all 0.3s ease-in-out';
-  popupContainer.style.fontFamily = 'Lato, sans-serif'; // Apply the Lato font
+  popupContainer.style.fontFamily = 'sans-serif'; // Apply the Lato font
 
 
   // Create popup card
@@ -422,7 +367,7 @@ function createPopup(nutritionData, recipeLink) {
         width: 100%;
         height: 100%;
         background: white;
-        font-family:"Lato";
+        font-family:"sans-serif !important";
       }
       .no-print {
         display: none !important;
@@ -512,6 +457,9 @@ function createPopup(nutritionData, recipeLink) {
   // Add CSS for better styling
   const contentStyle = document.createElement('style');
   contentStyle.textContent = `
+    *{
+      font-family: "sans-serif" !important;
+  }
     .nutrition-section {
       padding: 18px;
       border-radius: 12px;
@@ -527,6 +475,7 @@ function createPopup(nutritionData, recipeLink) {
       margin-bottom: 15px;
       font-size: 20px;
       font-weight: 600;
+      font-family: "sans-serif" !important;
     }
     ul.nested-list {
       padding-left: 20px;
@@ -555,7 +504,7 @@ function createPopup(nutritionData, recipeLink) {
   document.head.appendChild(contentStyle);
 
   content.innerHTML = `
-    <h2 style="text-align: center; color: #2c3e50; font-size: 28px; margin-bottom: 25px; font-weight: 700; font-family:"Lato";>Comprehensive Nutrition Analysis</h2>
+    <h2 style="text-align: center; color: #2c3e50; font-size: 28px; margin-bottom: 25px; font-weight: 700;>Comprehensive Nutrition Analysis</h2>
     
     ${nutritionData.calories ? `
       <div class="nutrition-section" style="background: #f7fbfc; border-left: 5px solid #4caf50;">
