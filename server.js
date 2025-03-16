@@ -775,24 +775,34 @@ server.get('/getTutorial', async (req, res) => {
   try {
     const userInput = req.query.userInput; 
     console.log(userInput);
-    const response = await axios.get(`${BASE_URL}/search?query=${userInput}&maxResults=1`);
+    const response = await axios.get(`${BASE_URL}/search?query=${userInput}&maxResults=2`);
 
     if (!response.data.items || response.data.items.length === 0) {
       return res.status(404).json({ message: 'No tutorial found.' });
     }
 
-    const video = response.data.items[0];
+    // const video = response.data.items[0];
 
-    const tutorialData = {
-      userInput:userInput,
+    // const tutorialData = {
+    //   userInput:userInput,
+    //   title: video.snippet.title,
+    //   description: video.snippet.description,
+    //   videoUrl: `https://www.youtube.com/watch?v=${video.id.videoId}`, // Generate video URL
+    //   thumbnail: video.snippet.thumbnails.high.url
+    // };
+
+    // Extract data for both videos
+    const tutorials = response.data.items.map(video => ({
       title: video.snippet.title,
       description: video.snippet.description,
-      videoUrl: `https://www.youtube.com/watch?v=${video.id.videoId}`, // Generate video URL
+      videoUrl: `https://www.youtube.com/watch?v=${video.id.videoId}`,
       thumbnail: video.snippet.thumbnails.high.url
-    };
-    console.log(tutorialData);
+    }));
 
-    res.json(tutorialData); 
+    console.log(tutorials);
+    // console.log(tutorialData);
+
+    res.json(tutorials); 
   } catch (error) {
     console.error('Error fetching tutorial:', error);
     res.status(500).json({ message: 'Error fetching tutorial.' });
