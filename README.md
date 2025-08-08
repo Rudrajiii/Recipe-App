@@ -4,6 +4,10 @@ It's basically a Recipe Generation wep app using the LLM Model mixtral-8x7b-3276
 Provided by GROQ API✨It's Very Very Fast
 Here it's Stats From official GROQ WEbSite
 
+<div align="center">
+  <video src="https://github.com/user-attachments/assets/515f8340-925e-4529-a406-5f63900cd896" width="640" height="360" autoplay controls></video>
+</div>
+
 ## Performance Metrics
 
 ### Round Trip Time
