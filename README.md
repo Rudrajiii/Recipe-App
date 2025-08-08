@@ -58,6 +58,7 @@ Recipe.in is an innovative application designed to generate delicious recipes wi
 
 ## Project Structure
 
+```bash
 GROQ_WITH_NODE/
 ├── model/
 │ ├── SearchHistory.js
@@ -73,7 +74,7 @@ GROQ_WITH_NODE/
 ├── env.js
 ├── package.json
 └── README.md
-
+```
 
 
 ## Features
