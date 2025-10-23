@@ -43,7 +43,7 @@ require('dotenv').config();
 let BASE_URL = undefined;
 if(process.env.PRODUCTION === "true"){
   console.log("-- Production mode activated");
-  BASE_URL = "https://food-api-production-5a82.up.railway.app";
+  BASE_URL = "https://food-api-pi0o.onrender.com";
 }else{
   console.log("-- Development mode activated");
   BASE_URL = "http://127.0.0.1:5000";
