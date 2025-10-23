@@ -477,7 +477,7 @@ server.get("/api", async function (req, res) {
 
     // Redirect to the /share endpoint with the _id of the newly created recipe
     console.log("Saved Recipe Details:", saveRecipeDetails);
-    const recipeLink = `http://localhost:8081/share/${userId}/${String(saveRecipeDetails._id)}`;
+    const recipeLink = `https://recipe-app-u78t.onrender.com/share/${userId}/${String(saveRecipeDetails._id)}`;
     console.log("mongo id => ",String(saveRecipeDetails._id));
     res.json({
       response: apiData,
