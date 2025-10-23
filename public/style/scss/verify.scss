@@ -1,0 +1,220 @@
+@forward 'globals';
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Bitter:ital,wght@0,100..900;1,100..900&family=Holtwood+One+SC&family=Kalam:wght@300;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Strike&display=swap');
+
+body, html {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    // background: linear-gradient(to right, #0289ff93, #00d0ff8f); /* Add a cool background gradient */
+}
+
+.loginForm {
+    width: 35vw;
+    height: auto;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+    padding: 2rem;
+    border-radius: 1rem; /* More rounded corners */
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+
+    h3 {
+        font-weight: 700;
+        font-size: 2.5rem;
+        color: #0287FF; /* Color that matches the theme */
+    }
+
+    h5 {
+        font-size: 1.2rem;
+        color: #666666; /* Soft text color */
+        margin-bottom: 1rem;
+    }
+
+    #reg-form {
+        display: flex;
+        width: 80%;
+        flex-direction: column;
+        gap: 2vh;
+        align-items: center;
+        justify-content: center;
+        .btn {
+            background: #0287FF;
+            color: white !important;
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+            &:hover {
+                background: #0056b3; /* Darken the button on hover */
+            }
+        }
+
+        input {
+            padding: 0.7rem;
+            width: 95%; /* Slightly smaller than form width */
+            border: 1px solid #dddddd;
+            border-radius: 0.5rem;
+            background: #f9f9f9;
+            transition: all 0.3s ease;
+            &:focus {
+                background: #fff;
+                border-color: #0287FF; /* Change border color on focus */
+                outline: none;
+                box-shadow: 0 0 8px rgba(0, 135, 255, 0.3);
+            }
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: #0287FF;
+        margin-top: 1rem;
+        font-weight: 500;
+        &:hover {
+            color: #0056b3;
+        }
+    }
+}
+
+/* Media query for screens larger than 1181px */
+@media (min-width: 1181px) {
+    .loginForm {
+        width: 40vw; /* Slightly reduce the width */
+        padding: 2.5rem; /* Add more padding */
+    }
+}
+
+/* Media query for screens smaller than 1181px but larger than 768px (tablets and small desktops) */
+@media (max-width: 1180px) and (min-width: 768px) {
+    .loginForm {
+        width: 48vw; /* Increase the width slightly on smaller screens */
+        padding: 2rem;
+        h3 {
+            font-size: 2rem; /* Reduce font size for better spacing */
+        }
+    }
+}
+
+/* Media query for screens smaller than 768px (tablets and phones) */
+@media (max-width: 768px) {
+    .loginForm {
+        width: 80vw;
+        padding: 1.5rem;
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        #reg-form {
+            width: 100%; /* Full width form */
+            input {
+                width: 90%; /* Slightly smaller inputs */
+            }
+        }
+    }
+}
+
+/* Media query for screens smaller than 480px (mobile phones) */
+@media (max-width: 480px) {
+    .loginForm {
+        width: 90vw;
+        padding: 1rem;
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        h5 {
+            font-size: 1rem;
+        }
+
+        #reg-form {
+            width: 100%;
+            .btn {
+                padding: 0.7rem;
+                font-size: 0.9rem;
+            }
+
+            input {
+                padding: 0.6rem;
+                width: 85%; /* Adjust input width on mobile */
+            }
+        }
+
+        #username, #password {
+            width: 85%;
+        }
+    }
+}
+
+.reminder-container {
+    display: flex;
+    justify-content: flex-start;  // Align to the right side
+    width: 100%;  // Ensure the parent container takes full width
+    margin-left: 1.3rem;
+}
+
+.reminder {
+    display: flex;
+    align-items: center;
+    gap: 1rem;  // Smaller gap between checkbox and text
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    color: #666666;
+    cursor: pointer;
+    white-space: nowrap;
+
+    input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        accent-color: #0287FF;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    label {
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    input[type="checkbox"]:checked + label {
+        color: #0287FF;
+        font-weight: 500;
+    }
+}
+
+/* Tablets and smaller devices */
+@media (max-width: 768px) {
+    .reminder {
+        font-size: 13px;
+        gap: 3px;
+
+        input[type="checkbox"] {
+            width: 14px;
+            height: 14px;
+        }
+    }
+}
+
+/* Mobile screens */
+@media (max-width: 480px) {
+    .reminder {
+        font-size: 12px;
+        gap: 2px;
+
+        input[type="checkbox"] {
+            width: 12px;
+            height: 12px;
+        }
+    }
+}

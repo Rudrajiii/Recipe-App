@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title : <%= recipe.title %></title>
+    <style>
+      * {
+        font-family: "Lato", sans-serif;
+        cursor: pointer;
+      }
+
+      .recipe-card {
+        background-color: #2a2a2a;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        max-width: 1200px;
+        margin: 1rem auto;
+        color: #ffffff;
+      }
+      .recipe-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+      }
+      .recipe-card__header {
+        position: relative;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1rem;
+        padding: 1rem;
+        align-items: center;
+        margin-left: 1rem;
+        margin-top: 1rem;
+      }
+      @media (max-width: 768px) {
+        .recipe-card__header {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .sub__header-txt{
+          margin: auto;
+          margin-top: .6rem;
+        }
+      }
+      .recipe-card__image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid #96e072;
+      }
+      .recipe-card__image img {
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+      }
+      @media (max-width: 768px) {
+        .recipe-card__image {
+          margin: 0 auto;
+        }
+      }
+      .recipe-card__title {
+        font-size: 2rem;
+        margin: 0;
+        color: #ffffff;
+        font-weight: 700;
+      }
+      .sub__header-txt{
+        color: whitesmoke;
+        font-size: 17px;
+        width: 200px;
+        white-space: nowrap;
+        gap: 2vh;
+      }
+      .username{
+        color: whitesmoke;
+        font-size: 16px;
+        background: #626060;
+        padding: .5rem;
+        width: 60px;
+        border-radius: 10px;
+        white-space: nowrap;
+      }
+      .recipe-card__content {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 2rem;
+        padding: 2rem;
+      }
+      @media (max-width: 968px) {
+        .recipe-card__content {
+          grid-template-columns: 1fr;
+        }
+      }
+      .recipe-card__analysis {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 1rem;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .recipe-card__subtitle {
+        font-size: 1.5rem;
+        margin: 0 0 1rem;
+        color: #96e072;
+      }
+      .recipe-card__stats {
+        display: grid;
+        gap: 1rem;
+      }
+      .recipe-card__description {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 1rem;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .recipe-card__description p {
+        line-height: 1.6;
+        color: #b3b3b3;
+        margin: 0;
+      }
+
+      .nutrition-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 0.5rem;
+      }
+
+      .stat {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+      }
+      .stat__label {
+        color: #b3b3b3;
+      }
+      .stat__value {
+        font-weight: 600;
+        color: #96e072;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #1a1a1a;
+        }
+      } /*# sourceMappingURL=recipe_share.css.map */
+    </style>
+  </head>
+  <body>
+    <div class="recipe-card">
+      <div class="recipe-card__header">
+        <div class="recipe-card__image">
+          <img src="<%= recipe.imageUrl %>" alt="<%= recipe.title %>" />
+        </div>
+        <h1 class="recipe-card__title">
+          <%= recipe.title %>
+          <p class="sub__header-txt">Recipe Created By ~ <span class="username"><%= recipe.user_name %></span></p>
+        </h1>
+        
+      </div>
+
+      <div class="recipe-card__content">
+        <!-- Main Nutritional Info -->
+        <div class="recipe-card__analysis">
+          <h2 class="recipe-card__subtitle">Nutritional Information</h2>
+
+          <!-- Calories -->
+          <div class="nutrition-section">
+            <h3>Calories</h3>
+            <div class="stat">
+              Total Calories
+              <span class="stat__value">
+                <%= recipe.nutrition && recipe.nutrition.calories ? recipe.nutrition.calories.amount : 'N/A' %>
+                <%= recipe.nutrition && recipe.nutrition.calories && recipe.nutrition.calories.unit ? recipe.nutrition.calories.unit : '' %>
+              </span>
+            </div>
+          </div>
+
+          <!-- Macronutrients -->
+          <div class="nutrition-section">
+            <h3>Macronutrients</h3>
+            <div class="nutrition-grid">
+              <% if (recipe.nutrition && recipe.nutrition.macronutrients) { %>
+                <% const macros = recipe.nutrition.macronutrients %> 
+                <% for (const [key, value] of Object.entries(macros)) { %>
+                  <% if (value) { %>
+                    <div class="stat">
+                      <span class="stat__label"><%= key.charAt(0).toUpperCase() + key.slice(1) %></span>
+                      <span class="stat__value"><%= value.amount || 'N/A' %> <%= value.unit || '' %></span>
+                      <span class="stat__dv">(<%= value.dv || 'N/A' %> DV)</span>
+                    </div>
+                  <% } %>
+                <% } %>
+              <% } else { %>
+                <div class="stat">
+                  <span class="stat__label">No macronutrient data available</span>
+                </div>
+              <% } %>
+            </div>
+          </div>
+
+          <!-- Dietary Components -->
+          <div class="nutrition-section">
+            <h3>Dietary Components</h3>
+            <div class="nutrition-grid">
+              <% if (recipe.nutrition && recipe.nutrition.dietaryComponents) { %>
+                <% const dietary = recipe.nutrition.dietaryComponents %> 
+                <% for (const [key, value] of Object.entries(dietary)) { %>
+                  <% if (value) { %>
+                    <div class="stat">
+                      <span class="stat__label"><%= key.charAt(0).toUpperCase() + key.slice(1) %></span>
+                      <span class="stat__value"><%= value.amount || 'N/A' %> <%= value.unit || '' %></span>
+                      <span class="stat__dv">(<%= value.dv || 'N/A' %> DV)</span>
+                    </div>
+                  <% } %>
+                <% } %>
+              <% } else { %>
+                <div class="stat">
+                  <span class="stat__label">No dietary component data available</span>
+                </div>
+              <% } %>
+            </div>
+          </div>
+
+          <!-- Other Components -->
+          <div class="nutrition-section">
+            <h3>Other Components</h3>
+            <div class="nutrition-grid">
+              <% if (recipe.nutrition && recipe.nutrition.otherComponents) { %>
+                <div class="stat">
+                  <span class="stat__label">Trans Fats</span>
+                  <span class="stat__value"><%= recipe.nutrition.otherComponents.transFats || 'N/A' %></span>
+                </div>
+                <div class="stat">
+                  <span class="stat__label">Saturated Fats</span>
+                  <span class="stat__value"><%= recipe.nutrition.otherComponents.saturatedFats || 'N/A' %></span>
+                </div>
+              <% } else { %>
+                <div class="stat">
+                  <span class="stat__label">No other components data available</span>
+                </div>
+              <% } %>
+            </div>
+            <div class="additional-info">
+              <h3>Additional Info</h3>
+              <p
+                class="stat__label"
+                style="
+                  background: rgba(0, 0, 0, 0.2);
+                  border-radius: 8px;
+                  padding: 1rem;
+                "
+              >
+                <%= recipe.nutrition && recipe.nutrition.otherComponents && recipe.nutrition.otherComponents.additionalInfo ? recipe.nutrition.otherComponents.additionalInfo : 'No additional information available' %>
+              </p>
+            </div>
+          </div>
+
+          <!-- Micronutrients -->
+          <div class="nutrition-section">
+            <h3>Micronutrients</h3>
+            <div class="nutrition-grid">
+              <h4>Vitamins</h4>
+              <% if (recipe.nutrition && recipe.nutrition.micronutrients && recipe.nutrition.micronutrients.vitamins && recipe.nutrition.micronutrients.vitamins.length > 0) { %>
+                <% for (const vitamin of recipe.nutrition.micronutrients.vitamins) { %>
+                  <% if (vitamin && vitamin.length >= 2) { %>
+                    <div class="stat">
+                      <span class="stat__label"><%= vitamin[0] %></span>
+                      <span class="stat__value"><%= vitamin[1] %></span>
+                    </div>
+                  <% } %>
+                <% } %>
+              <% } else { %>
+                <div class="stat">
+                  <span class="stat__label">No vitamin data available</span>
+                </div>
+              <% } %>
+
+              <h4>Minerals</h4>
+              <% if (recipe.nutrition && recipe.nutrition.micronutrients && recipe.nutrition.micronutrients.minerals && recipe.nutrition.micronutrients.minerals.length > 0) { %>
+                <% for (const mineral of recipe.nutrition.micronutrients.minerals) { %>
+                  <% if (mineral && mineral.length >= 2) { %>
+                    <div class="stat">
+                      <span class="stat__label"><%= mineral[0] %></span>
+                      <span class="stat__value"><%= mineral[1] %></span>
+                    </div>
+                  <% } %>
+                <% } %>
+              <% } else { %>
+                <div class="stat">
+                  <span class="stat__label">No mineral data available</span>
+                </div>
+              <% } %>
+            </div>
+          </div>
+
+          <!-- Health Effects -->
+          <div class="nutrition-section">
+            <h3>Health Effects</h3>
+            <p
+              class="health-effects stat__label"
+              style="
+                background: rgba(0, 0, 0, 0.2);
+                border-radius: 8px;
+                padding: 1rem;
+              "
+            >
+              <% if (recipe.nutrition && recipe.nutrition.healthEffects) { %>
+                <% if (Array.isArray(recipe.nutrition.healthEffects) && recipe.nutrition.healthEffects.length > 0) { %>
+                  <%= recipe.nutrition.healthEffects.join(', ') %>
+                <% } else if (typeof recipe.nutrition.healthEffects === 'string' && recipe.nutrition.healthEffects) { %>
+                  <%= recipe.nutrition.healthEffects %>
+                <% } else { %>
+                  No health effects data available
+                <% } %>
+              <% } else { %>
+                No health effects data available
+              <% } %>
+            </p>
+          </div>
+        </div>
+
+        <!-- Recipe Description -->
+        <div class="recipe-card__description">
+          <h2 class="recipe-card__subtitle">Description</h2>
+          <% if (recipe.description && typeof recipe.description === 'string') { %>
+            <% recipe.description.split('\n').forEach(function(line) { %>
+              <% if (line.trim()) { %>
+                <p style="margin-bottom: 12px"><%= line %></p>
+              <% } %>
+            <% }) %>
+          <% } else { %>
+            <p>No description available</p>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

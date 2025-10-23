@@ -1,0 +1,246 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Bitter:ital,wght@0,100..900;1,100..900&family=Holtwood+One+SC&family=Kalam:wght@300;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Strike&display=swap");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+body, html {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: relative;
+}
+
+.leftContainerPart {
+  width: 50vw;
+  height: 100%;
+}
+.leftContainerPart img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  filter: brightness(1.1) contrast(1.2) saturate(1.2) opacity(0.9);
+}
+@media (max-width: 768px) {
+  .leftContainerPart {
+    display: none;
+  }
+}
+
+.rightContainerPart {
+  width: 50vw;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+@media (max-width: 768px) {
+  .rightContainerPart {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+.rightContainerPart #veri {
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+  font-weight: 400;
+  font-style: normal;
+}
+.rightContainerPart p {
+  font-family: "Kalam", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.rightContainerPart .formWrapper {
+  width: 28vw;
+  height: 70vh;
+  border-radius: 0.7rem;
+  display: grid;
+  place-items: center;
+  position: relative;
+  background: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+@media (max-width: 1181px) {
+  .rightContainerPart .formWrapper {
+    width: 45vw;
+    height: 80vh;
+  }
+  .rightContainerPart .formWrapper #veri {
+    margin-top: 1rem;
+  }
+}
+@media (max-width: 768px) {
+  .rightContainerPart .formWrapper {
+    width: 95vw; /* Updated for better responsiveness */
+    height: auto; /* Allow height to be flexible */
+    padding: 2rem; /* Padding for mobile view */
+  }
+}
+.rightContainerPart .formWrapper .form {
+  width: 100%;
+  height: auto; /* Changed to auto for better flexibility */
+}
+@media (max-width: 768px) {
+  .rightContainerPart .formWrapper .form {
+    height: auto; /* Ensure height is flexible on mobile */
+  }
+}
+.rightContainerPart .formWrapper #reg-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto; /* Change height to auto for mobile */
+  gap: 2vh;
+}
+@media (max-width: 768px) {
+  .rightContainerPart .formWrapper #reg-form {
+    gap: 1rem; /* Adjust gap for mobile view */
+  }
+}
+.rightContainerPart .formWrapper #reg-form input {
+  width: 85%; /* Input width slightly less than the form width */
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transition: all 0.3s ease;
+}
+.rightContainerPart .formWrapper #reg-form input:hover {
+  box-shadow: rgba(149, 157, 165, 0.3) 0px 12px 30px;
+}
+.rightContainerPart .formWrapper #reg-form input:focus {
+  outline: none;
+  box-shadow: rgba(2, 135, 255, 0.4) 0px 12px 36px;
+}
+.rightContainerPart .formWrapper #reg-form .head {
+  text-align: center;
+}
+.rightContainerPart .formWrapper #reg-form .head h5 {
+  color: #000;
+  font-family: "Kalam", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+}
+.rightContainerPart .formWrapper #reg-form .head h3 {
+  color: #000000;
+  font-family: "Kalam", cursive;
+  font-weight: 700;
+  font-size: 2.2rem;
+  font-style: normal;
+}
+.rightContainerPart .formWrapper #reg-form .head h3 span {
+  color: #0287FF;
+}
+.rightContainerPart .formWrapper #reg-form #profilePic {
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 0.4rem;
+  width: 85%; /* Input width slightly less than form width */
+  padding: 0.3rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.rightContainerPart .formWrapper #reg-form .input-group {
+  width: 85%;
+  position: relative;
+}
+.rightContainerPart .formWrapper #reg-form .input-group #password {
+  width: 100%; /* Input width slightly less than form width */
+  border-radius: 0.4rem;
+  border: none;
+  padding: 0.6rem;
+  background: #fff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  transition: all 0.3s ease;
+}
+.rightContainerPart .formWrapper #reg-form .input-group #toggle-password {
+  position: absolute;
+  width: 4vh;
+  aspect-ratio: 1/1;
+  right: 10px;
+  bottom: 20%;
+  background: none;
+  border: none;
+}
+.rightContainerPart .formWrapper #reg-form #email, .rightContainerPart .formWrapper #reg-form #username {
+  width: 85%; /* Input width slightly less than form width */
+  border-radius: 0.4rem;
+  border: none;
+  padding: 0.6rem;
+  background: #fff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  transition: all 0.3s ease;
+}
+.rightContainerPart .formWrapper #reg-form #email:hover, .rightContainerPart .formWrapper #reg-form #username:hover {
+  box-shadow: rgba(0, 123, 255, 0.2) 0px 10px 20px;
+}
+.rightContainerPart .formWrapper #reg-form #email:focus, .rightContainerPart .formWrapper #reg-form #username:focus {
+  outline: none;
+  box-shadow: rgba(0, 123, 255, 0.4) 0px 10px 36px;
+}
+.rightContainerPart .formWrapper #reg-form .btn {
+  width: 85%; /* Button width slightly less than form width */
+  background: #0287FF;
+  border: none;
+  color: white;
+  padding: 0.7rem 1.2rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.rightContainerPart .formWrapper #reg-form .btn:hover {
+  background: #026bbd;
+  box-shadow: rgba(2, 135, 255, 0.5) 0px 8px 24px;
+}
+.rightContainerPart .formWrapper #reg-form .btn:focus {
+  outline: none;
+  background: #025ca1;
+  box-shadow: rgba(2, 135, 255, 0.6) 0px 12px 30px;
+}
+@media (max-width: 415px) {
+  .rightContainerPart .formWrapper input {
+    width: 95% !important;
+  }
+  .rightContainerPart .formWrapper .input-group {
+    width: 95% !important;
+    position: relative;
+  }
+  .rightContainerPart .formWrapper .input-group #password {
+    width: 100% !important; /* Input width slightly less than form width */
+    border-radius: 0.4rem;
+    border: none;
+    padding: 0.6rem;
+    background: #fff;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    transition: all 0.3s ease;
+  }
+  .rightContainerPart .formWrapper .input-group #toggle-password {
+    position: absolute;
+    width: 4vh;
+    aspect-ratio: 1/1;
+    right: 10px;
+    bottom: 20%;
+    background: none;
+    border: none;
+  }
+  .rightContainerPart .formWrapper .link {
+    font-size: 0.8rem; /* Adjust font size */
+    white-space: nowrap; /* Prevent line breaks */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+  }
+}/*# sourceMappingURL=auth.css.map */

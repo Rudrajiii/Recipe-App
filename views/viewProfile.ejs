@@ -1,0 +1,688 @@
+<!-- views/profile.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-tooltip/2.0.0/chartjs-plugin-tooltip.min.js"></script>
+    <style>
+      /* Global Styles */
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: monospace;
+  scrollbar-width: thin;
+  scrollbar-color: #444444 #252525;
+}
+
+/* Webkit browsers (Chrome, Safari, newer Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #252525;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #444444;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+::-webkit-scrollbar-corner {
+  background: #252525;
+}
+
+html, body {
+  background-color: #121212;
+  color: #e0e0e0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+body {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Changed from center to allow scrolling */
+}
+
+/* Main Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 10px;
+  border: 2px solid #2d2d2d;
+  border-radius: 15px;
+  padding: 15px;
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  overflow: visible; /* Allow content to determine container size */
+}
+
+/* Grid Layout */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  width: 100%;
+}
+
+/* User Info Panel */
+.user-panel {
+  border: 1px solid #2d2d2d;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #252525;
+  height: auto; /* Auto height to fit content */
+  min-height: min-content;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #333333;
+  overflow: hidden;
+  border: 2px solid #8AE072;
+  flex-shrink: 0;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-info, .food-stats {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.username {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #ffffff;
+  word-break: break-word;
+}
+
+.email {
+  font-size: 18px;
+  color: #b0b0b0;
+  word-break: break-word;
+  margin-bottom: 5px;
+}
+
+hr {
+  width: 100%;
+  margin: 10px 0;
+  border: none;
+  border-top: 1px solid #2d2d2d;
+}
+
+/* Content Panel */
+.content-panel {
+  display: grid;
+  grid-template-rows: auto auto; /* Changed from fractional to auto */
+  gap: 20px;
+  border-radius: 12px;
+}
+
+.graph-container {
+  border: 1px solid #2d2d2d;
+  border-radius: 12px;
+  padding: 20px;
+  background-color: #252525;
+  display: flex;
+  flex-direction: column;
+}
+
+.graph-title {
+  font-size: 24px;
+  color: #ffffff;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 200px; /* Fixed height for chart */
+  position: relative;
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.stats-box {
+  border: 1px solid #2d2d2d;
+  border-radius: 12px;
+  padding: 20px;
+  background-color: #252525;
+  display: flex;
+  flex-direction: column;
+  max-height: 300px; /* Fixed max height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.stats-title {
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 15px;
+  flex-shrink: 0;
+}
+
+.recipe-list {
+  list-style: none;
+  overflow-y: auto;
+}
+
+.recipe-list li {
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #333333;
+  font-size: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-list li a {
+  text-decoration: none;
+  color: #7ba8e0;
+  display: flex;
+  align-items: center;
+  word-break: break-word;
+}
+
+.recipe-list li a:hover {
+  color: #8AE072;
+}
+
+.recipe-list li .recipe-score {
+  margin-left: auto;
+  font-weight: bold;
+  color: #f5b148;
+  flex-shrink: 0;
+}
+
+.shared-recipe {
+  padding: 15px;
+  background-color: #333333;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.shared-recipe-title {
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.shared-recipe-description {
+  font-size: 14px;
+  color: #b0b0b0;
+  margin-bottom: 15px;
+}
+
+.shared-recipe-link {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: #5186c7;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.shared-recipe-link:hover {
+  background-color: #6fa1e6;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-left-color: #5186c7;
+  animation: spin 1s linear infinite;
+}
+
+.buttons {
+  display: flex;
+  margin-top: 15px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.button {
+  padding: 10px;
+  margin: 5px;
+  background-color: #bfbbbb;
+  color: rgb(64, 58, 58);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: monospace;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  min-width: 80px;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: #8AE072;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Custom tooltip */
+.chart-tooltip {
+  position: absolute;
+  background-color: rgba(15, 15, 15, 0.9);
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  pointer-events: none;
+  max-width: 300px;
+  display: none;
+  z-index: 100;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.fs {
+  font-size: 18px;
+  margin-bottom: 5px;
+  word-break: break-word;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+  
+  .user-panel {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+    margin: 5px;
+  }
+  
+  .stats-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+  
+  .profile-image {
+    width: 130px;
+    height: 130px;
+  }
+  
+  .stats-box {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 5px;
+  }
+  
+  .container {
+    padding: 8px;
+    margin: 2px;
+  }
+  
+  .profile-grid,
+  .content-panel,
+  .stats-container {
+    gap: 10px;
+  }
+  
+  .user-panel,
+  .graph-container,
+  .stats-box {
+    padding: 12px;
+  }
+  
+  .profile-image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+  
+  .username {
+    font-size: 18px;
+  }
+  
+  .email,
+  .button {
+    font-size: 14px;
+  }
+  
+  .fs {
+    font-size: 16px;
+  }
+  
+  .graph-title,
+  .stats-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .chart-wrapper {
+    height: 160px;
+  }
+  
+  .recipe-list li {
+    padding: 6px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 350px) {
+  .profile-image {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .username {
+    font-size: 16px;
+  }
+  
+  .email,
+  .button {
+    font-size: 12px;
+  }
+  
+  .fs {
+    font-size: 14px;
+  }
+}   
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-grid">
+            <!-- User Info Panel -->
+            <div class="user-panel">
+                <div class="profile-image">
+                    <img src="<%= profile %>" alt="Profile Picture">
+                </div>
+                <div class="user-info">
+                    <h2 class="username">@<%= user.username %></h2>
+                    <p class="email"> <%= user.email %></p>
+                    <p class="email"><%= userId %></p>
+                </div>
+                <hr>
+                <div class="food-stats" style="margin-top: 10px;">
+                  <p class="fs">Total Shared Recipes 🍔 : <%= recipe_details.length  %></p>
+                  <p class="fs" id="sr"></p>
+                </div>
+                <div class="buttons">
+                    <a href="/index" class="button">Back</a>
+                    <a href="/logout" class="button">Logout</a>
+                </div>
+            </div>
+            
+            <!-- Content Panel -->
+            <div class="content-panel">
+                <!-- Bar Graph Section -->
+                <div class="graph-container">
+                    <h2 class="graph-title">Search History</h2>
+                    <div class="chart-wrapper">
+                        <div id="loadingIndicator" class="loading">
+                            <div class="loading-spinner"></div>
+                        </div>
+                        <canvas id="searchHistoryChart"></canvas>
+                        <div id="chartTooltip" class="chart-tooltip"></div>
+                    </div>
+                </div>
+                
+                <!-- Stats Boxes -->
+                <div class="stats-container">
+                    <!-- Top 5 Box -->
+                    <div class="stats-box">
+                        <h3 class="stats-title">Top 5 Searches</h3>
+                        <ul id="topSearchesList" class="recipe-list">
+                            <li>Loading top searches...</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Shared Recipe Box -->
+                    <div class="stats-box" style="overflow-y: auto; max-height: 300px;">
+                      <h3 class="stats-title">Shared Recipes</h3>
+                      <% if (recipe_details && recipe_details.length > 0) { %>
+                        <ul class="recipe-list">
+                          <% recipe_details.forEach(recipe => { %>
+                            <li>
+                              <a href="https://recipe-app-iq01.onrender.com/share/<%= userId %>/<%= recipe._id %>" target="_blank">
+                                <%= shortenText(recipe.user_query, 30) %>
+                              </a>
+                            </li>
+                          <% }); %>
+                        </ul>
+                      <% } else { %>
+                        <p>No shared recipes found.</p>
+                      <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+  const userId = "<%= userId %>"; // Get user ID from EJS template
+  console.log(userId);
+  let searchHistoryChart;
+
+  // Fetch user search history
+  fetchSearchHistory(userId);
+
+  async function fetchSearchHistory(userId) {
+    try {
+      const response = await fetch(`/history?userId=${userId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch search history');
+      }
+
+      const data = await response.json();
+
+      // Hide loading indicator
+      document.getElementById('loadingIndicator').style.display = 'none';
+      document.getElementById('sr').innerHTML = `All time Searches 🔍 : ${Object.keys(data).length}`;
+      // Process and display data
+      displaySearchData(data);
+    } catch (error) {
+      console.error('Error fetching search history:', error);
+      document.getElementById('loadingIndicator').innerHTML = 'Failed to load search history';
+    }
+  }
+
+  function displaySearchData(data) {
+    // Prepare data for chart (top 8 entries)
+    const chartData = prepareChartData(Object.entries(data));
+
+    // Create chart
+    createChart(chartData);
+
+    // Update top 5 searches list
+    updateTopSearchesList(Object.entries(data).sort((a,b) => b[1] - a[1]).slice(0, 5));
+  }
+
+  function prepareChartData(entries) {
+    const labels = [];
+    const values = [];
+
+    entries.forEach(([query, count]) => {
+      // Use shortened query for labels
+      labels.push(shortenText(query, 15));
+      values.push(count);
+    });
+
+    return {
+      labels: labels,
+      values: values,
+    };
+  }
+
+  function createChart(chartData) {
+  const ctx = document.getElementById('searchHistoryChart').getContext('2d');
+
+  searchHistoryChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: chartData.labels,
+      datasets: [
+        // Area curve dataset (displayed behind bars)
+        {
+          type: 'line',
+          label: 'Trend',
+          data: chartData.values,
+          backgroundColor: 'rgba(81, 134, 199, 0.2)', // Semi-transparent blue
+          borderColor: 'rgba(81, 134, 199, 0.6)',      // Light green border
+          borderWidth: 2,
+          pointRadius: 0,                              // Hide points
+          tension: 0.4,                                // Make curve smooth
+          fill: true,                                  // Fill area under the curve
+          order: 1                                     // Ensure it's drawn behind the bars
+        },
+        // Bar dataset (original)
+        {
+          type: 'bar',
+          label: 'Search Count',
+          data: chartData.values,
+          backgroundColor: '#5186c7',                  // Updated to match dark theme blue
+          borderWidth: 0,
+          borderRadius: 4,
+          order: 0                                     // Ensure it's drawn in front
+        }
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false,
+        },
+        tooltip: {
+          enabled: true,
+          callbacks: {
+            label: function (context) {
+              // Display only the search count in the tooltip
+              return `Searches: ${context.parsed.y}`;
+            },
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            precision: 0,
+            color: '#b0b0b0'                          // Light gray text for dark mode
+          },
+          grid: {
+            display: true,                            // Show horizontal grid lines
+            color: 'rgba(255, 255, 255, 0.1)'         // Subtle grid lines for dark mode
+          },
+          title: {
+            display: true,
+            text: 'Number of Searches',
+            color: '#e0e0e0'                          // Light color for dark mode
+          },
+        },
+        x: {
+          ticks: {
+            display: false,                            // Show x-axis labels
+            
+          },
+          grid: {
+            display: false,                           // Remove vertical grid lines
+          },
+        },
+      },
+    },
+  });
+}
+
+  function updateTopSearchesList(entries) {
+    const listEl = document.getElementById('topSearchesList');
+    listEl.innerHTML = '';
+    entries.sort((a, b) => b[1] - a[1]); // Sort by search count (descending)
+    console.log(entries);
+    entries.forEach(([query, count]) => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <a href="#">
+          ${shortenText(query, 30)}
+          <span class="recipe-score">${count}</span>
+        </a>
+      `;
+      li.title = ''; // Remove hover tooltip
+      listEl.appendChild(li);
+    });
+
+    if (entries.length === 0) {
+      listEl.innerHTML = '<li>No search history found</li>';
+    }
+  }
+
+  // Utility function to shorten text with ellipsis
+  function shortenText(text, maxLength) {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + '...';
+  }
+});
+    </script>
+</body>
+</html>

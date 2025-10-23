@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="../js/index.js" defer></script>
+    <script src="../js/auth.js" defer></script>
+    <script src="../js/format.js" defer></script>
+    <script src="../js/analysisBtnForSmallScreens.js" defer></script>
+    <link rel="stylesheet" href="../style/scss/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Lato:wght@500;700&display=swap" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- Flash MessagesetUp Code -->
+    <% if(successFlash) { %>
+        <div class="alert alert-success alert-dismissible  show" role="alert">
+            <strong>Hey! <%= userData.username %> 👋</strong><%= successFlash %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+    <% }%>
+    <!-- Nav Bar Code -->
+    <nav>
+      <div class="navBtns">
+        <div class="history" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+          <a class="btn btn-secondary" id="hishis" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Search History" href=""><i class="fa-solid fa-clock-rotate-left"></i>History</a>
+        </div>
+        <div class="history1" type="button">
+          <a  class="btn btn-secondary" data-bs-toggle="modal"  data-bs-target="#exampleModal" data-bs-title="Share Recipe" data-bs-whatever="@fat">Give Us Feedback 🍔</a>
+        </div>
+      </div>
+        <div class="dropdown" style="display: none;">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Menu
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#" id="food-analysis-mobile">Ananlyze & Share 🍟</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" >History</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">Feedbacks</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">Demo Prompts</a></li>
+            <!-- <li><a class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop" id="food-analysis">Ananlyze 🍟</a></li> -->
+          </ul>
+        </div>
+        <div class="profile_pic">
+            <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/my-recipes-logo.png" alt="Pic">
+            <p id="name-h">Hey! <%= userData.username %> 👋</p>
+        </div>
+
+        <div class="logoutButton">
+            <a href="/logout">logout</a>
+        </div>
+        <div class="settings dropdown">
+            <button id="hy"  data-bs-toggle="dropdown"  aria-expanded="false" style="border: none; background: transparent;" >
+                <i  data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="settings" class="fa-solid fa-gear setting">
+                </i>
+            </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/profile/<%= userData._id %>">Edit Profile</a></li>
+                    <li><a class="dropdown-item" href="viewProfile">View Profile</a></li>
+                    <li><a class="dropdown-item" href="/logout">logout</a></li>
+                </ul>
+        </div>
+    </nav>
+
+
+<!--? History Toggleing -->
+
+<!-- <button >Enable body scrolling</button> -->
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel" style="font-weight: 600; font-size: 1.7rem;">Search History⌛</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul id="searchHistory">
+            <% searchHistory.forEach((item, index) => { %>
+                <div id="hist">
+                    <p class="d-inline-flex gap-1">
+                        <a style="background: #ebe6e6; border: none; color: black;" id="history<%= index %>" class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <%= extractDate(item.timestamp) %>
+                        </a>
+                      </p>
+                      <div class="collapse" id="collapseExample" style="margin-bottom: 1rem;">
+                        <div id="history<%= index %>" class="card card-body">
+                            <%= item.query %>
+                        </div>
+                      </div>
+                      <hr>
+                    <!-- <button class="copy" data-copy-id="1"data-index="<%= index %>">Copy</button> -->
+                </div>
+            <% }); %>
+        </ul>  
+    </div>
+  </div>
+
+<!--? History Toggleing -->
+
+
+
+<!--? Another Top Toggle -->
+<!-- <button class="btn btn-primary" type="button" >Toggle top offcanvas</button> -->
+
+<div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasTopLabel"><h2 style="font-family: 'Kalam', cursive;font-weight: 400;
+      font-style: normal;">Demo Prompts 📃</h2></h5>
+    <button style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body" >
+    <div class="cpyItem" id="history1">⭐ Generate a recipe for tasty Chicken Biriyani In Indian Style1. 
+      <button data-index="1" style="border-radius: .5rem ;border: none; padding: .3rem .8rem" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
+  </div>
+  <hr>
+  <div class="cpyItem b" id="history2">⭐ Generate a recipe for delicious Japanese Food also tell me the steps of cooking. 
+    <button data-index="2"   style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
+  </div>
+  <hr>
+<div class="cpyItem" id="history3">⭐ Give a recipe for a Tea and also mention all the ingredients used in the process. 
+    <button  data-index="3"  style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
+  </div>
+  <hr>
+<div class="cpyItem b" id="history4">⭐ Generate a recipe of a famous Indian dish called "Khichuri" 
+    <button  data-index="4"  style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
+  </div>
+  <hr>
+<div class="cpyItem" id="history5">⭐ Name Some famous dishes of Africa !!
+    <button  data-index="5"  style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
+  </div>
+  <hr>
+<div class="cpyItem b" id="history6">⭐ Tell me the step by step process to make a Doracake.
+    <button  data-index="6"  style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
+  </div>
+  <hr>
+<div class="cpyItem " id="history7">⭐ Tell me how I can make a tasty flavourful chocolate ice cream.
+    <button  data-index="7"  style="border-radius: .5rem ;border: none; padding: .3rem .8rem" id="khatam" class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
+  </div>
+  </div>
+</div>
+<!--? Another Top Toggle -->
+
+
+<!--? Special Toggle's -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: black;">Give Your Feedback ⭐</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="feedbackForm" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Name:</label>
+              <input name="recipient_name" type="text" class="form-control" id="recipient-name">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Message:</label>
+              <textarea name="message_text" class="form-control" id="message-text"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" style="background: #ebe6e6;" class="btn" data-bs-dismiss="modal" id="btnClose">Close</button>
+          <button type="button" style="background: rgb(63, 183, 248); color: #ffffff;" class="btn" id="btnSubmit">Send message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+<!--? Special Toggle's -->
+
+<!--? Toast Notification -->
+<!-- <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button> -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/my-recipes-logo.png" class="rounded me-2" alt="..." style="width: 40px; aspect-ratio: 1/1; border-radius: 50%;">
+      <strong class="me-auto">From Recipie.in</strong>
+      <small>just now</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Thanks for your feedback 😊
+    </div>
+  </div>
+</div>
+<!--? Toast Notification -->
+
+    <!-- <h1>Welcome! <%= userData.username %></h1> -->
+    <div class="main">
+        <!-- <div class="feedback" >
+            <button type="button" class="btn" id="huh" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">
+                <h3 style="margin-top: .6rem;white-space: nowrap; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Share Recipe 🍔</h3>
+            </button>
+        </div> -->
+        <div class="class">
+          <button id="food-analysis">Ananlyze & Share🍟</button>
+        </div>
+        <div class="grabber">
+            <img src="<%= modifiedImagePath %>" alt="pic" class="userProfile">
+            <textarea name="input" id="input" placeholder="Enter Your Fav Dish"></textarea>
+            <button id="btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></button>
+            <!-- <button id="food-analysis">Ananlyze 🍟</button> -->
+            <div id="popup-container" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"></div>
+        </div>
+    </div>
+
+<div class="response">
+    <div class="demoItem" >
+            <h2 style="color: whitesmoke;">Demo Prompts 📃</h2>
+            <div class="cpyItem" >
+                <div class="horizontal_wrapper" style="display: flex; width: 100%; gap: .3rem;">
+                  <p>
+                    ⭐ Generate a recipe for tasty Chicken Biriyani In Indian Style. 
+                  </p>
+                  <div class="img_holder">
+                    <img style="width: 5rem; aspect-ratio: 1/1; border-radius: .4rem;" src="https://tse2.mm.bing.net/th?id=OIP.wBu0Xsb774mtzvjhq1C3DgHaE8&pid=Api&P=0&h=180" alt="">
+                  </div>
+                </div>
+                <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
+            </div>
+
+            <div class="cpyItem b">
+              <div class="horizontal_wrapper" style="display: flex; width: 100%; gap: .3rem;">
+                <p>
+                  ⭐Make some recipe for Japanese Food also tell me the steps of cooking.  
+                </p>
+                <div class="img_holder">
+                  <img style="width: 5rem; aspect-ratio: 1/1; border-radius: .4rem;" src="https://tse2.mm.bing.net/th?id=OIP.pJMBum-3fZcZiPITQh_b9QHaEK&pid=Api&P=0&h=180" alt="">
+                </div>
+              </div>
+              <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
+            </div>
+
+            <div class="cpyItem">
+              <div class="horizontal_wrapper" style="display: flex; width: 100%; gap: .3rem;">
+                <p>
+                  ⭐ Give a recipe for a Tea and also mention all the ingredients used in the process. 
+                </p>
+                <div class="img_holder">
+                  <img style="width: 5rem; aspect-ratio: 1/1; border-radius: .4rem;" src="https://tse2.mm.bing.net/th?id=OIP.5YM3usZpJpZ42N9tMa9H8gHaE8&pid=Api&P=0&h=180" alt="">
+                </div>
+              </div>
+              <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>
+              </div>
+            <div class="cpyItem b">
+              <div class="horizontal_wrapper" style="display: flex; width: 100%; gap: .3rem;">
+                <p>
+                  ⭐ Generate a recipe of a famous Indian dish called "Khichuri" 
+                </p>
+                <div class="img_holder">
+                  <img style="width: 5rem; aspect-ratio: 1/1; border-radius: .4rem;" src="https://tse3.mm.bing.net/th?id=OIP.eLrZEgR_1PTAExTIqfJblwHaE8&pid=Api&P=0&h=180" alt="">
+                </div>
+              </div>
+              <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>           
+              </div>
+
+            <div class="cpyItem">
+              
+              <div class="horizontal_wrapper" style="display: flex; width: 100%; gap: .3rem;">
+                <p>
+                  ⭐ Name Some famous dishes of Africa !! 
+                </p>
+                <div class="img_holder">
+                  <img style="width: 5rem; aspect-ratio: 1/1; border-radius: .4rem;" src="https://tse4.mm.bing.net/th?id=OIP.YjpdkyD9qpLHN1LUMow2NgHaE6&pid=Api&P=0&h=180" alt="">
+                </div>
+              </div>
+              <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>          
+              </div>
+
+            <div class="cpyItem b">
+              <div class="horizontal_wrapper" style="display: flex; width: 100%; gap: .3rem;">
+                <p>
+                  ⭐ Tell me the step by step process to make a Doracake.
+                </p>
+                <div class="img_holder">
+                  <img style="width: 5rem; aspect-ratio: 1/1; border-radius: .4rem;" src="https://imgs.search.brave.com/xlwDOKBKeCYcb97ji7S3EaArYg_SzV7_cG5UaLeCKd0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9yYW52/ZWVyYnJhci5jb20v/d3AtY29udGVudC91/cGxvYWRzLzIwMjEv/MDIvRG9yYS1DYWtl/LTY0MHgzODUuanBn" alt="">
+                </div>
+              </div>
+              <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>           
+              </div>
+
+            <div class="cpyItem ">
+              <div class="horizontal_wrapper" style="display: flex; width: 100%; gap: .3rem;">
+                <p>
+                  ⭐ Tell me how I can make a tasty flavourful chocolate ice cream.
+                </p>
+                <div class="img_holder">
+                  <img style="width: 5rem; aspect-ratio: 1/1; border-radius: .4rem;" src="https://tse4.explicit.bing.net/th?id=OIP.OV6ibW8Avg4mvTg8_vRwOwHaE8&pid=Api&P=0&h=180" alt="">
+                </div>
+              </div>
+              <button class="copy" data-copy-id="1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">Copy</button>          
+            </div>
+    </div>
+    <div id="result">
+              <div id="progressBar" class="text-center" style="display: none;">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div id="jjk">
+                <img id="bot"  src="https://tse3.mm.bing.net/th?id=OIP.JU23CZMWiiKqQJl1mKiXQQHaHa&pid=Api&P=0&h=180" alt="">
+                <h4 id="botu">Start Generating Your Favourite Recipie's😋</h4>
+            </div>
+            <!-- <div id="pagination" style="text-align: center; margin-top: 1rem;"></div> -->
+    </div>
+    <footer>
+      <h2 id="h2ka" style="font-weight: 400;">@2025 All Copy Right is Reserved</h2>
+      <h2 id="h2kaa" style="font-weight: 400;">~ Made By Rudra ❤️ ~</h2>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+   </body>
+</html>
+
